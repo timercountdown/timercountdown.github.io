@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online 15 minute timer with alarm. Easy to use countdown timer perfect for cooking, workouts, studying, and presentations.">
+    <title>15 Minute Timer | Ten Minute Timer | Free Online Countdown Timer | TimerCountdown</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="256x256">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="/favicon.ico">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Arial:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-PVBRHHSS');</script>
+        <!-- End Google Tag Manager -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3a86ff',
+                        secondary: '#e5e5e5',
+                        background: '#f7f9fc',
+                        card: '#ffffff',
+                        text: {
+                            primary: '#2b2d42',
+                            secondary: '#555555',
+                            muted: '#777777'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Arial', 'sans-serif'],
+                        mono: ['Courier New', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-text-primary leading-normal">
+    <div class="max-w-screen-lg mx-auto px-5 py-5">
+        <header class="flex justify-between items-center py-4 border-b border-gray-200">
+            <a href="/" class="text-2xl font-bold text-primary no-underline">TimerCountdown</a>
+            <nav>
+                <a href="/" class="ml-5 text-text-secondary font-medium no-underline hover:text-primary">Home</a>
+            </nav>
+        </header>
+        
+        <main>
+            <div class="bg-card rounded-xl shadow-md p-8 my-8 text-center">
+                <h1 class="text-3xl font-bold mb-5 text-text-primary">15 Minute Timer</h1>
+                
+                <div class="h-2 bg-secondary rounded-full mb-8">
+                    <div id="progressBar" class="h-full bg-primary rounded-full w-full transition-all duration-1000"></div>
+                </div>
+                
+                <div id="timerDisplay" class="text-7xl font-bold text-primary my-8 font-mono">05:00</div>
+                
+                <div class="flex items-center justify-center mb-5">
+                    <input type="checkbox" id="soundToggle" class="mr-2">
+                    <label for="soundToggle" class="font-medium">Play sound when timer ends</label>
+                </div>
+                
+                <div class="flex justify-center gap-4 mb-8 md:flex-row flex-col">
+                    <button id="startPauseBtn" class="bg-primary text-white font-bold py-3 px-8 rounded-full hover:translate-y-[-2px] hover:shadow-lg transition-all duration-300">Start</button>
+                    <button id="resetBtn" class="bg-secondary text-text-secondary font-bold py-3 px-8 rounded-full hover:translate-y-[-2px] hover:shadow-lg transition-all duration-300">Reset</button>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-5 my-10">
+                <div class="bg-card rounded-lg p-5 shadow">
+                    <h3 class="text-xl font-bold text-text-primary mb-2">Simple to Use</h3>
+                    <p class="text-text-secondary">Just press start and the 5 minute countdown begins immediately. No setup required.</p>
+                </div>
+                
+                <div class="bg-card rounded-lg p-5 shadow">
+                    <h3 class="text-xl font-bold text-text-primary mb-2">Visual Progress</h3>
+                    <p class="text-text-secondary">Watch the progress bar decrease as time counts down to easily track remaining time.</p>
+                </div>
+                
+                <div class="bg-card rounded-lg p-5 shadow">
+                    <h3 class="text-xl font-bold text-text-primary mb-2">Audio Alert</h3>
+                    <p class="text-text-secondary">Get notified with a clear sound when your 5 minutes are up, even if you're away from the screen.</p>
+                </div>
+            </div>
+            
+            <div class="my-10">
+                <h2 class="text-2xl font-bold text-text-primary mb-4">How to Use This 15 Minute Timer</h2>
+                <p class="mb-5">This free online 15 minute timer is perfect for timing various activities. Simply press the Start button to begin the countdown from 5:00. You can pause at any time and reset to start over.</p>
+                
+                <div class="grid md:grid-cols-4 sm:grid-cols-2 gap-5 mt-5">
+                    <div class="bg-blue-50 rounded-lg p-4 text-center">
+                        <h4 class="text-primary font-bold mb-2">Cooking</h4>
+                        <p class="text-text-secondary">Perfect for timing recipes that need a quick 5 minute cooking time.</p>
+                    </div>
+                    
+                    <div class="bg-blue-50 rounded-lg p-4 text-center">
+                        <h4 class="text-primary font-bold mb-2">Workouts</h4>
+                        <p class="text-text-secondary">Time your exercise intervals or rest periods during HIIT workouts.</p>
+                    </div>
+                    
+                    <div class="bg-blue-50 rounded-lg p-4 text-center">
+                        <h4 class="text-primary font-bold mb-2">Studying</h4>
+                        <p class="text-text-secondary">Use the Pomodoro technique with short 5 minute breaks between study sessions.</p>
+                    </div>
+                    
+                    <div class="bg-blue-50 rounded-lg p-4 text-center">
+                        <h4 class="text-primary font-bold mb-2">Presentations</h4>
+                        <p class="text-text-secondary">Keep your speeches or meeting contributions concise and on time.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="text-center py-5 border-t border-gray-200 text-text-muted mt-10">
+            <p>&copy; 2025 TimerCountdown. All rights reserved. <a href="/privacy-policy.html" class="text-primary no-underline">Privacy Policy</a> | <a href="/terms-of-use.html" class="text-primary no-underline">Terms of Use</a></p>
+        </footer>
+    </div>
+
+    <audio id="alarmSound" src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3" preload="auto"></audio>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const timerDisplay = document.getElementById('timerDisplay');
+        const progressBar = document.getElementById('progressBar');
+        const startPauseBtn = document.getElementById('startPauseBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const soundToggle = document.getElementById('soundToggle');
+        const alarmSound = document.getElementById('alarmSound');
+        
+        const TIMER_DURATION = 15 * 60; // 5 minutes in seconds
+        let timeLeft = TIMER_DURATION;
+        let timerId;
+        let isRunning = false;
+        
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60).toString().padStart(2, '0');
+            const secs = (seconds % 60).toString().padStart(2, '0');
+            return `${mins}:${secs}`;
+        }
+        
+        function updateDisplay() {
+            timerDisplay.textContent = formatTime(timeLeft);
+            const progressPercentage = (timeLeft / TIMER_DURATION) * 100;
+            progressBar.style.width = `${progressPercentage}%`;
+            
+            document.title = `${formatTime(timeLeft)} - 15 Minute Timer | TimerCountdown`;
+        }
+        
+        function toggleTimer() {
+            if (isRunning) {
+                // 暂停计时器
+                clearInterval(timerId);
+                isRunning = false;
+                startPauseBtn.textContent = 'Start';
+                startPauseBtn.classList.remove('bg-secondary', 'text-text-secondary');
+                startPauseBtn.classList.add('bg-primary', 'text-white');
+            } else {
+                // 启动计时器
+                isRunning = true;
+                startPauseBtn.textContent = 'Pause';
+                startPauseBtn.classList.remove('bg-primary', 'text-white');
+                startPauseBtn.classList.add('bg-secondary', 'text-text-secondary');
+                
+                timerId = setInterval(() => {
+                    timeLeft--;
+                    updateDisplay();
+                    
+                    if (timeLeft <= 0) {
+                        clearInterval(timerId);
+                        isRunning = false;
+                        startPauseBtn.textContent = 'Start';
+                        
+                        // 重置按钮样式
+                        startPauseBtn.classList.remove('bg-secondary', 'text-text-secondary');
+                        startPauseBtn.classList.add('bg-primary', 'text-white');
+                        
+                        if (soundToggle.checked) {
+                            playAlarm();
+                        }
+                    }
+                }, 1000);
+            }
+        }
+        
+        function resetTimer() {
+            clearInterval(timerId);
+            isRunning = false;
+            timeLeft = TIMER_DURATION;
+            updateDisplay();
+            startPauseBtn.textContent = 'Start';
+            
+            // 重置按钮样式
+            startPauseBtn.classList.remove('bg-secondary', 'text-text-secondary');
+            startPauseBtn.classList.add('bg-primary', 'text-white');
+        }
+        
+        function playAlarm() {
+            alarmSound.play();
+        }
+        
+        startPauseBtn.addEventListener('click', toggleTimer);
+        resetBtn.addEventListener('click', resetTimer);
+        
+        // 初始化显示
+        updateDisplay();
+    });
+    </script>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PVBRHHSS"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+</body>
+</html>

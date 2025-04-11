@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online countdown timers for any purpose. Easy to use timers perfect for cooking, workouts, studying, and presentations.">
+    <title>TimerCountdown | Free Online Countdown Timers</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="256x256">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="/favicon.ico">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Arial:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-PVBRHHSS');</script>
+        <!-- End Google Tag Manager -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3a86ff',
+                        secondary: '#e5e5e5',
+                        background: '#f7f9fc',
+                        card: '#ffffff',
+                        text: {
+                            primary: '#2b2d42',
+                            secondary: '#555555',
+                            muted: '#777777'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Arial', 'sans-serif'],
+                        mono: ['Courier New', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-text-primary leading-normal">
+    <div class="max-w-screen-lg mx-auto px-5 py-5">
+        <header class="flex justify-between items-center py-4 border-b border-gray-200">
+            <a href="/" class="text-2xl font-bold text-primary no-underline">TimerCountdown</a>
+            <nav>
+                <a href="/" class="ml-5 text-primary font-medium no-underline">Home</a>
+            </nav>
+        </header>
+        
+        <main>
+            <!-- Hero Section -->
+            <div class="bg-card rounded-xl shadow-md p-8 my-8 text-center">
+                <h1 class="text-4xl font-bold mb-3 text-text-primary">Free Online Countdown Timers</h1>
+                <p class="text-lg text-text-secondary mb-8">Simple, reliable timers for any task or activity</p>
+                
+                <div class="flex flex-wrap justify-center gap-4 mb-6">
+                    <a href="5-minute-timer.html" class="bg-primary text-white font-bold py-3 px-6 rounded-lg hover:translate-y-[-2px] hover:shadow-lg transition-all duration-300">5 Min</a>
+                    <a href="10-minute-timer.html" class="bg-blue-100 text-primary font-bold py-3 px-6 rounded-lg hover:bg-blue-200 transition-all duration-300">10 Min</a>
+                    <a href="15-minute-timer.html" class="bg-blue-100 text-primary font-bold py-3 px-6 rounded-lg hover:bg-blue-200 transition-all duration-300">15 Min</a>
+                </div>
+
+                <p class="text-text-secondary">Choose any timer above or try our popular <a href="5-minute-timer.html" class="text-primary font-medium">5 minute timer</a></p>
+            </div>
+            
+            <!-- Featured Timer Preview -->
+            <div class="bg-card rounded-xl shadow-md p-8 my-8">
+                <h2 class="text-2xl font-bold mb-5 text-center">Quick 5 Minute Timer</h2>
+                <div class="h-2 bg-secondary rounded-full mb-6">
+                    <div id="previewProgressBar" class="h-full bg-primary rounded-full w-full transition-all duration-1000"></div>
+                </div>
+                <div id="previewTimerDisplay" class="text-5xl md:text-6xl font-bold text-primary my-6 text-center font-mono">05:00</div>
+                <div class="flex justify-center gap-4">
+                    <a href="5-minute-timer.html" class="bg-primary text-white font-bold py-3 px-8 rounded-full hover:translate-y-[-2px] hover:shadow-lg transition-all duration-300">Use Full Timer</a>
+                </div>
+            </div>
+            
+            <!-- Features -->
+            <div class="my-12">
+                <h2 class="text-2xl font-bold text-text-primary mb-6 text-center">Why Use TimerCountdown?</h2>
+                
+                <div class="grid md:grid-cols-3 gap-5">
+                    <div class="bg-card rounded-lg p-5 shadow hover:shadow-lg transition-all duration-300">
+                        <h3 class="text-xl font-bold text-text-primary mb-2">Easy to Use</h3>
+                        <p class="text-text-secondary">No downloads or installations needed. Our timers start with just one click - simple and hassle-free.</p>
+                    </div>
+                    
+                    <div class="bg-card rounded-lg p-5 shadow hover:shadow-lg transition-all duration-300">
+                        <h3 class="text-xl font-bold text-text-primary mb-2">Visual & Audio Alerts</h3>
+                        <p class="text-text-secondary">Watch the progress bar and receive audio notifications when your timer completes.</p>
+                    </div>
+                    
+                    <div class="bg-card rounded-lg p-5 shadow hover:shadow-lg transition-all duration-300">
+                        <h3 class="text-xl font-bold text-text-primary mb-2">Completely Free</h3>
+                        <p class="text-text-secondary">All our timers are free to use with no ads interrupting your focus or workflow.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Use Cases -->
+            <div class="my-12">
+                <h2 class="text-2xl font-bold text-text-primary mb-6 text-center">Perfect For Any Activity</h2>
+                
+                <div class="grid md:grid-cols-4 sm:grid-cols-2 gap-5">
+                    <div class="bg-blue-50 rounded-lg p-4 text-center transition-all duration-300 hover:bg-blue-100">
+                        <h4 class="text-primary font-bold mb-2">Cooking</h4>
+                        <p class="text-text-secondary">Time your recipes perfectly every time with our reliable timers.</p>
+                    </div>
+                    
+                    <div class="bg-blue-50 rounded-lg p-4 text-center transition-all duration-300 hover:bg-blue-100">
+                        <h4 class="text-primary font-bold mb-2">Workouts</h4>
+                        <p class="text-text-secondary">Perfect for interval training, rest periods, and timed exercises.</p>
+                    </div>
+                    
+                    <div class="bg-blue-50 rounded-lg p-4 text-center transition-all duration-300 hover:bg-blue-100">
+                        <h4 class="text-primary font-bold mb-2">Studying</h4>
+                        <p class="text-text-secondary">Use the Pomodoro technique with timed study sessions and breaks.</p>
+                    </div>
+                    
+                    <div class="bg-blue-50 rounded-lg p-4 text-center transition-all duration-300 hover:bg-blue-100">
+                        <h4 class="text-primary font-bold mb-2">Presentations</h4>
+                        <p class="text-text-secondary">Keep your speeches and meetings on schedule and well-organized.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Popular Timers -->
+            <div class="my-12">
+                <h2 class="text-2xl font-bold text-text-primary mb-6 text-center">Popular Timers</h2>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <a href="5-minute-timer.html" class="bg-card rounded-lg p-6 shadow text-center hover:shadow-lg transition-all duration-300 no-underline">
+                        <h3 class="text-xl font-bold text-primary mb-2">5 Minute Timer</h3>
+                        <div class="h-1 bg-secondary rounded-full mb-3 w-3/4 mx-auto">
+                            <div class="h-full bg-primary rounded-full w-full"></div>
+                        </div>
+                        <p class="text-text-secondary">Perfect for quick tasks, short breaks, and rapid cooking times.</p>
+                    </a>
+                    
+                    <a href="10-minute-timer.html" class="bg-card rounded-lg p-6 shadow text-center hover:shadow-lg transition-all duration-300 no-underline">
+                        <h3 class="text-xl font-bold text-primary mb-2">10 Minute Timer</h3>
+                        <div class="h-1 bg-secondary rounded-full mb-3 w-3/4 mx-auto">
+                            <div class="h-full bg-primary rounded-full w-full"></div>
+                        </div>
+                        <p class="text-text-secondary">Perfect for Pomodoro technique - 10 minutes of focused work.</p>
+                    </a>
+                    
+                    <a href="15-minute-timer.html" class="bg-card rounded-lg p-6 shadow text-center hover:shadow-lg transition-all duration-300 no-underline">
+                        <h3 class="text-xl font-bold text-primary mb-2">15 Minute Timer</h3>
+                        <div class="h-1 bg-secondary rounded-full mb-3 w-3/4 mx-auto">
+                            <div class="h-full bg-primary rounded-full w-full"></div>
+                        </div>
+                        <p class="text-text-secondary">For longer tasks, meetings, and extended cooking times.</p>
+                    </a>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="text-center py-5 border-t border-gray-200 text-text-muted mt-10">
+            <p>&copy; 2025 TimerCountdown. All rights reserved. <a href="/privacy-policy.html" class="text-primary no-underline">Privacy Policy</a> | <a href="/terms-of-use.html" class="text-primary no-underline">Terms of Use</a></p>
+        </footer>
+    </div>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PVBRHHSS"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+</body>
+</html>
