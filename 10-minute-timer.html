@@ -64,9 +64,19 @@
                 
                 <div id="timerDisplay" class="text-7xl font-bold text-primary my-8 font-mono">05:00</div>
                 
-                <div class="flex items-center justify-center mb-5">
-                    <input type="checkbox" id="soundToggle" class="mr-2">
+                <div class="flex items-center justify-center mb-3">
+                    <input type="checkbox" id="soundToggle" class="mr-2" checked>
                     <label for="soundToggle" class="font-medium">Play sound when timer ends</label>
+                </div>
+                
+                <div class="flex items-center justify-center mb-5">
+                    <input type="checkbox" id="notificationToggle" class="mr-2" checked>
+                    <label for="notificationToggle" class="font-medium">Show notification when timer ends</label>
+                </div>
+                
+                <div id="notificationStatus" class="text-sm text-orange-500 mb-5 hidden">
+                    Notification permission is required to receive alerts when the timer ends
+                    <button id="requestPermissionBtn" class="ml-2 bg-orange-500 text-white py-1 px-3 rounded-full text-sm">Allow Notifications</button>
                 </div>
                 
                 <div class="flex justify-center gap-4 mb-8 md:flex-row flex-col">
@@ -77,8 +87,8 @@
             
             <div class="grid md:grid-cols-3 gap-5 my-10">
                 <div class="bg-card rounded-lg p-5 shadow">
-                    <h3 class="text-xl font-bold text-text-primary mb-2">Simple to Use</h3>
-                    <p class="text-text-secondary">Just press start and the 5 minute countdown begins immediately. No setup required.</p>
+                    <h3 class="text-xl font-bold text-text-primary mb-2">Audio Alert & Notifications</h3>
+                    <p class="text-text-secondary">Get notified with sound and browser notifications when your 10 minutes are up, even if you're in another tab.</p>
                 </div>
                 
                 <div class="bg-card rounded-lg p-5 shadow">
@@ -88,7 +98,7 @@
                 
                 <div class="bg-card rounded-lg p-5 shadow">
                     <h3 class="text-xl font-bold text-text-primary mb-2">Audio Alert</h3>
-                    <p class="text-text-secondary">Get notified with a clear sound when your 5 minutes are up, even if you're away from the screen.</p>
+                    <p class="text-text-secondary">Get notified with a clear sound when your 10 minutes are up, even if you're away from the screen.</p>
                 </div>
             </div>
             
@@ -99,7 +109,7 @@
                 <div class="grid md:grid-cols-4 sm:grid-cols-2 gap-5 mt-5">
                     <div class="bg-blue-50 rounded-lg p-4 text-center">
                         <h4 class="text-primary font-bold mb-2">Cooking</h4>
-                        <p class="text-text-secondary">Perfect for timing recipes that need a quick 5 minute cooking time.</p>
+                        <p class="text-text-secondary">Perfect for timing recipes that need a quick 10 minute cooking time.</p>
                     </div>
                     
                     <div class="bg-blue-50 rounded-lg p-4 text-center">
@@ -109,7 +119,7 @@
                     
                     <div class="bg-blue-50 rounded-lg p-4 text-center">
                         <h4 class="text-primary font-bold mb-2">Studying</h4>
-                        <p class="text-text-secondary">Use the Pomodoro technique with short 5 minute breaks between study sessions.</p>
+                        <p class="text-text-secondary">Use the Pomodoro technique with short 10 minute breaks between study sessions.</p>
                     </div>
                     
                     <div class="bg-blue-50 rounded-lg p-4 text-center">
@@ -134,12 +144,74 @@
         const startPauseBtn = document.getElementById('startPauseBtn');
         const resetBtn = document.getElementById('resetBtn');
         const soundToggle = document.getElementById('soundToggle');
+        const notificationToggle = document.getElementById('notificationToggle');
+        const notificationStatus = document.getElementById('notificationStatus');
+        const requestPermissionBtn = document.getElementById('requestPermissionBtn');
         const alarmSound = document.getElementById('alarmSound');
         
-        const TIMER_DURATION = 10 * 60; // 5 minutes in seconds
+        const TIMER_DURATION = 10 * 60; // 10 minutes in seconds
         let timeLeft = TIMER_DURATION;
         let timerId;
         let isRunning = false;
+           
+        // Check notification permission
+        function checkNotificationPermission() {
+            if (!("Notification" in window)) {
+                // Browser doesn't support notifications
+                notificationToggle.disabled = true;
+                notificationToggle.checked = false;
+                notificationStatus.textContent = "Your browser doesn't support notifications";
+                notificationStatus.classList.remove('hidden');
+                return false;
+            }
+            
+            if (Notification.permission === "granted") {
+                // Permission already granted
+                notificationStatus.classList.add('hidden');
+                return true;
+            } else if (Notification.permission === "denied") {
+                // Permission denied
+                notificationToggle.checked = false;
+                notificationStatus.textContent = "Notification permission denied. Please enable in browser settings.";
+                notificationStatus.classList.remove('hidden');
+                return false;
+            } else {
+                // Permission not decided yet, need to request
+                notificationStatus.classList.remove('hidden');
+                return false;
+            }
+        }
+        
+        // Request notification permission
+        function requestNotificationPermission() {
+            Notification.requestPermission().then(function(permission) {
+                if (permission === "granted") {
+                    notificationStatus.classList.add('hidden');
+                } else {
+                    notificationToggle.checked = false;
+                    notificationStatus.textContent = "Notification permission denied. Please enable in browser settings.";
+                }
+            });
+        }
+        
+        // Send notification
+        function sendNotification() {
+            if (Notification.permission === "granted" && notificationToggle.checked) {
+                const notification = new Notification("5 Minute Timer", {
+                    body: "Time's up!",
+                    icon: "/favicon.ico"
+                });
+                
+                // Focus timer page when notification is clicked
+                notification.onclick = function() {
+                    window.focus();
+                    notification.close();
+                };
+                
+                // Auto close notification after 5 seconds
+                setTimeout(() => notification.close(), 5000);
+            }
+        }
         
         function formatTime(seconds) {
             const mins = Math.floor(seconds / 60).toString().padStart(2, '0');
@@ -157,14 +229,19 @@
         
         function toggleTimer() {
             if (isRunning) {
-                // 暂停计时器
+                // Pause timer
                 clearInterval(timerId);
                 isRunning = false;
                 startPauseBtn.textContent = 'Start';
                 startPauseBtn.classList.remove('bg-secondary', 'text-text-secondary');
                 startPauseBtn.classList.add('bg-primary', 'text-white');
             } else {
-                // 启动计时器
+                // Check notification permission before starting timer
+                if (notificationToggle.checked) {
+                    checkNotificationPermission();
+                }
+                
+                // Start timer
                 isRunning = true;
                 startPauseBtn.textContent = 'Pause';
                 startPauseBtn.classList.remove('bg-primary', 'text-white');
@@ -179,12 +256,18 @@
                         isRunning = false;
                         startPauseBtn.textContent = 'Start';
                         
-                        // 重置按钮样式
+                        // Reset button style
                         startPauseBtn.classList.remove('bg-secondary', 'text-text-secondary');
                         startPauseBtn.classList.add('bg-primary', 'text-white');
                         
+                        // Play sound
                         if (soundToggle.checked) {
                             playAlarm();
+                        }
+                        
+                        // Send notification
+                        if (notificationToggle.checked) {
+                            sendNotification();
                         }
                     }
                 }, 1000);
@@ -198,7 +281,7 @@
             updateDisplay();
             startPauseBtn.textContent = 'Start';
             
-            // 重置按钮样式
+            // Reset button style
             startPauseBtn.classList.remove('bg-secondary', 'text-text-secondary');
             startPauseBtn.classList.add('bg-primary', 'text-white');
         }
@@ -207,10 +290,24 @@
             alarmSound.play();
         }
         
+        // Initialize notification permission check
+        checkNotificationPermission();
+        
+        // Add event listeners
         startPauseBtn.addEventListener('click', toggleTimer);
         resetBtn.addEventListener('click', resetTimer);
+        requestPermissionBtn.addEventListener('click', requestNotificationPermission);
         
-        // 初始化显示
+        // Check permission when notification toggle is changed
+        notificationToggle.addEventListener('change', function() {
+            if (this.checked) {
+                checkNotificationPermission();
+            } else {
+                notificationStatus.classList.add('hidden');
+            }
+        });
+        
+        // Initialize display
         updateDisplay();
     });
     </script>
