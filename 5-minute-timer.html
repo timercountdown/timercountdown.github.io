@@ -51,6 +51,9 @@
             <a href="/" class="text-2xl font-bold text-primary no-underline">TimerCountdown</a>
             <nav>
                 <a href="/" class="ml-5 text-text-secondary font-medium no-underline hover:text-primary">Home</a>
+                <a href="/5-minute-timer.html" class="ml-5 text-text-secondary font-medium no-underline hover:text-primary">5 Minute Timer</a>
+                <a href="/10-minute-timer.html" class="ml-5 text-text-secondary font-medium no-underline hover:text-primary">10 Minute Timer</a>
+                <a href="/15-minute-timer.html" class="ml-5 text-text-secondary font-medium no-underline hover:text-primary">15 Minute Timer</a>
             </nav>
         </header>
         
@@ -82,6 +85,19 @@
                 <div class="flex justify-center gap-4 mb-8 md:flex-row flex-col">
                     <button id="startPauseBtn" class="bg-primary text-white font-bold py-3 px-8 rounded-full hover:translate-y-[-2px] hover:shadow-lg transition-all duration-300">Start</button>
                     <button id="resetBtn" class="bg-secondary text-text-secondary font-bold py-3 px-8 rounded-full hover:translate-y-[-2px] hover:shadow-lg transition-all duration-300">Reset</button>
+                    <button id="fullscreenBtn" class="bg-primary text-white font-bold py-3 px-8 rounded-full hover:translate-y-[-2px] hover:shadow-lg transition-all duration-300">Full Screen</button>
+                </div>
+            </div>
+
+            <div id="fullscreenContainer" class="fixed inset-0 bg-background hidden flex flex-col items-center justify-center z-50">
+                <div id="fullscreenTimerDisplay" class="text-9xl font-bold text-primary font-mono">10:00</div>
+                <div class="w-4/5 max-w-3xl h-4 bg-secondary rounded-full mt-10">
+                    <div id="fullscreenProgressBar" class="h-full bg-primary rounded-full w-full transition-all duration-1000"></div>
+                </div>
+                <div class="flex justify-center gap-6 mt-10">
+                    <button id="fullscreenStartPauseBtn" class="bg-primary text-white font-bold py-3 px-8 rounded-full hover:translate-y-[-2px] hover:shadow-lg transition-all duration-300">Start</button>
+                    <button id="fullscreenResetBtn" class="bg-secondary text-text-secondary font-bold py-3 px-8 rounded-full hover:translate-y-[-2px] hover:shadow-lg transition-all duration-300">Reset</button>
+                    <button id="exitFullscreenBtn" class="bg-secondary text-text-secondary font-bold py-3 px-8 rounded-full hover:translate-y-[-2px] hover:shadow-lg transition-all duration-300">Exit Full Screen</button>
                 </div>
             </div>
             
@@ -131,6 +147,24 @@
         </main>
         
         <footer class="text-center py-5 border-t border-gray-200 text-text-muted mt-10">
+            <div class="my-10">
+                <h2 class="text-2xl font-bold text-text-primary mb-4">Related Timers</h2>
+                <div class="grid md:grid-cols-2 gap-5">
+                    <a href="/5-minute-timer.html" class="bg-card rounded-lg p-5 shadow no-underline flex flex-col items-center hover:shadow-lg transition-all duration-300">
+                        <h3 class="text-xl font-bold text-primary mb-2">5 Minute Timer</h3>
+                        <p class="text-text-secondary text-center">Need a shorter countdown? Try our 5 minute timer for quick tasks.</p>
+                    </a>
+                    
+                    <a href="/10-minute-timer.html" class="bg-card rounded-lg p-5 shadow no-underline flex flex-col items-center hover:shadow-lg transition-all duration-300">
+                        <h3 class="text-xl font-bold text-primary mb-2">10 Minute Timer</h3>
+                        <p class="text-text-secondary text-center">Need a medium countdown? Use our 10 minute timer for more involved tasks.</p>
+                    </a>
+                    <a href="/15-minute-timer.html" class="bg-card rounded-lg p-5 shadow no-underline flex flex-col items-center hover:shadow-lg transition-all duration-300">
+                        <h3 class="text-xl font-bold text-primary mb-2">15 Minute Timer</h3>
+                        <p class="text-text-secondary text-center">Need a medium countdown? Use our 15 minute timer for more involved tasks.</p>
+                    </a>
+                </div>
+            </div>
             <p>&copy; 2025 TimerCountdown. All rights reserved. <a href="/privacy-policy.html" class="text-primary no-underline">Privacy Policy</a> | <a href="/terms-of-use.html" class="text-primary no-underline">Terms of Use</a></p>
         </footer>
     </div>
@@ -148,14 +182,23 @@
         const notificationStatus = document.getElementById('notificationStatus');
         const requestPermissionBtn = document.getElementById('requestPermissionBtn');
         const alarmSound = document.getElementById('alarmSound');
+
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+        const fullscreenContainer = document.getElementById('fullscreenContainer');
+        const fullscreenTimerDisplay = document.getElementById('fullscreenTimerDisplay');
+        const fullscreenProgressBar = document.getElementById('fullscreenProgressBar');
+        const fullscreenStartPauseBtn = document.getElementById('fullscreenStartPauseBtn');
+        const fullscreenResetBtn = document.getElementById('fullscreenResetBtn');
+        const exitFullscreenBtn = document.getElementById('exitFullscreenBtn');
         
-        const TIMER_DURATION = 5 * 60; // 5 minutes in seconds
+        const TIMER_XX = 5;
+        const TIMER_DURATION = TIMER_XX * 60; 
         let timeLeft = TIMER_DURATION;
         let timerId;
         let isRunning = false;
-        
-        // Check notification permission
-        function checkNotificationPermission() {
+
+         // Check notification permission
+         function checkNotificationPermission() {
             if (!("Notification" in window)) {
                 // Browser doesn't support notifications
                 notificationToggle.disabled = true;
@@ -197,7 +240,7 @@
         // Send notification
         function sendNotification() {
             if (Notification.permission === "granted" && notificationToggle.checked) {
-                const notification = new Notification("5 Minute Timer", {
+                const notification = new Notification(`${TIMER_XX} Minute Timer`, {
                     body: "Time's up!",
                     icon: "/favicon.ico"
                 });
@@ -220,11 +263,38 @@
         }
         
         function updateDisplay() {
-            timerDisplay.textContent = formatTime(timeLeft);
+            const formattedTime = formatTime(timeLeft);
+            timerDisplay.textContent = formattedTime;
+            
+            fullscreenTimerDisplay.textContent = formattedTime;
+            
             const progressPercentage = (timeLeft / TIMER_DURATION) * 100;
             progressBar.style.width = `${progressPercentage}%`;
+            fullscreenProgressBar.style.width = `${progressPercentage}%`;
             
-            document.title = `${formatTime(timeLeft)} - 5 Minute Timer | TimerCountdown`;
+            document.title = `${formattedTime} - ${TIMER_XX} Minute Timer | TimerCountdown`;
+        }
+
+        function updateButtonState() {
+            if (isRunning) {
+                startPauseBtn.textContent = 'Pause';
+                fullscreenStartPauseBtn.textContent = 'Pause';
+                
+                startPauseBtn.classList.remove('bg-primary', 'text-white');
+                startPauseBtn.classList.add('bg-secondary', 'text-text-secondary');
+                
+                fullscreenStartPauseBtn.classList.remove('bg-primary', 'text-white');
+                fullscreenStartPauseBtn.classList.add('bg-secondary', 'text-text-secondary');
+            } else {
+                startPauseBtn.textContent = 'Start';
+                fullscreenStartPauseBtn.textContent = 'Start';
+                
+                startPauseBtn.classList.remove('bg-secondary', 'text-text-secondary');
+                startPauseBtn.classList.add('bg-primary', 'text-white');
+                
+                fullscreenStartPauseBtn.classList.remove('bg-secondary', 'text-text-secondary');
+                fullscreenStartPauseBtn.classList.add('bg-primary', 'text-white');
+            }
         }
         
         function toggleTimer() {
@@ -232,9 +302,6 @@
                 // Pause timer
                 clearInterval(timerId);
                 isRunning = false;
-                startPauseBtn.textContent = 'Start';
-                startPauseBtn.classList.remove('bg-secondary', 'text-text-secondary');
-                startPauseBtn.classList.add('bg-primary', 'text-white');
             } else {
                 // Check notification permission before starting timer
                 if (notificationToggle.checked) {
@@ -243,9 +310,6 @@
                 
                 // Start timer
                 isRunning = true;
-                startPauseBtn.textContent = 'Pause';
-                startPauseBtn.classList.remove('bg-primary', 'text-white');
-                startPauseBtn.classList.add('bg-secondary', 'text-text-secondary');
                 
                 timerId = setInterval(() => {
                     timeLeft--;
@@ -254,11 +318,6 @@
                     if (timeLeft <= 0) {
                         clearInterval(timerId);
                         isRunning = false;
-                        startPauseBtn.textContent = 'Start';
-                        
-                        // Reset button style
-                        startPauseBtn.classList.remove('bg-secondary', 'text-text-secondary');
-                        startPauseBtn.classList.add('bg-primary', 'text-white');
                         
                         // Play sound
                         if (soundToggle.checked) {
@@ -269,9 +328,12 @@
                         if (notificationToggle.checked) {
                             sendNotification();
                         }
+
+                        updateButtonState();
                     }
                 }, 1000);
             }
+            updateButtonState();
         }
         
         function resetTimer() {
@@ -279,11 +341,7 @@
             isRunning = false;
             timeLeft = TIMER_DURATION;
             updateDisplay();
-            startPauseBtn.textContent = 'Start';
-            
-            // Reset button style
-            startPauseBtn.classList.remove('bg-secondary', 'text-text-secondary');
-            startPauseBtn.classList.add('bg-primary', 'text-white');
+            updateButtonState();
         }
         
         function playAlarm() {
@@ -293,10 +351,7 @@
         // Initialize notification permission check
         checkNotificationPermission();
         
-        // Add event listeners
-        startPauseBtn.addEventListener('click', toggleTimer);
-        resetBtn.addEventListener('click', resetTimer);
-        requestPermissionBtn.addEventListener('click', requestNotificationPermission);
+        
         
         // Check permission when notification toggle is changed
         notificationToggle.addEventListener('change', function() {
@@ -306,9 +361,30 @@
                 notificationStatus.classList.add('hidden');
             }
         });
+
+        function enterFullscreen() {
+            fullscreenContainer.classList.remove('hidden');
+            isFullscreen = true;
+            updateDisplay(); 
+            updateButtonState();
+        }
+        
+        function exitFullscreen() {
+            fullscreenContainer.classList.add('hidden');
+            isFullscreen = false;
+        }
+        
+        // Add event listeners
+        startPauseBtn.addEventListener('click', toggleTimer);
+        resetBtn.addEventListener('click', resetTimer);
+        fullscreenBtn.addEventListener('click', enterFullscreen);
+        
+        fullscreenStartPauseBtn.addEventListener('click', toggleTimer);
+        fullscreenResetBtn.addEventListener('click', resetTimer);
+        exitFullscreenBtn.addEventListener('click', exitFullscreen);
         
         // Initialize display
-        updateDisplay();
+        updateButtonState();
     });
     </script>
     <!-- Google Tag Manager (noscript) -->
