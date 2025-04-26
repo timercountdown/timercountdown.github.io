@@ -7,7 +7,7 @@ export async function GET() {
   const urls = [];
   durations.forEach(duration =>{
     urls.push({
-      "url": `${constants.domain}/timer/${duration}-minute-timer/`,
+      "url": `${constants.domain}/timer/${duration}-minute-timer`,
       "lastModified": new Date().toISOString(),
       "changeFrequency": 'daily',
       "priority": 1,
