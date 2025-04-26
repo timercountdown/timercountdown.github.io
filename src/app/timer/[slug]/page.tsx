@@ -224,7 +224,7 @@ function getMetaInfo(duration){
   return metaInfo;
 }
 
-export default async function DynamicTimer({ params }: TimerPageProps) {
+export default async function DynamicTimer({ params }) {
   const { slug } = await params
 
   const duration = parseInt(slug.replace(DEFAULT_END,''), 10);
@@ -399,7 +399,7 @@ export default async function DynamicTimer({ params }: TimerPageProps) {
 }
 
 // 为提高SEO效果，添加动态元数据
-export async function generateMetadata({ params }: TimerPageProps) {
+export async function generateMetadata({ params }) {
   const { slug } = await params;
 
   const duration = parseInt(slug.replace(DEFAULT_END,''), 10);
