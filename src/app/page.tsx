@@ -39,6 +39,12 @@ const HomePage: React.FC = () => {
         
        
         
+        
+      </Head>
+      
+     
+
+      <div className="bg-background text-text-primary leading-normal">
         {/* Schema.org JSON-LD */}
         <script
           type="application/ld+json"
@@ -280,11 +286,6 @@ const HomePage: React.FC = () => {
             })
           }}
         />
-      </Head>
-      
-     
-
-      <div className="bg-background text-text-primary leading-normal">
         <div className="max-w-screen-lg mx-auto px-5 py-5">
           <Header />
           
