@@ -19,6 +19,8 @@ const Timer: React.FC<TimerProps> = ({ duration }) => {
   const timerIdRef = useRef<NodeJS.Timeout | null>(null);
   const alarmSoundRef = useRef<HTMLAudioElement | null>(null);
   const backgroundMusicRef = useRef<HTMLAudioElement | null>(null);
+  const [isLandscape, setIsLandscape] = useState(false);
+
 
   useEffect(() => {
     // Initialize audio elements
@@ -30,6 +32,12 @@ const Timer: React.FC<TimerProps> = ({ duration }) => {
       backgroundMusicRef.current.loop = true;
     }
 
+    const checkOrientation = () => {
+      setIsLandscape(window.innerWidth < window.innerHeight);
+    };
+    checkOrientation();
+    window.addEventListener('resize', checkOrientation);
+
     // Check notification permission
     checkNotificationPermission();
 
@@ -39,6 +47,7 @@ const Timer: React.FC<TimerProps> = ({ duration }) => {
         backgroundMusicRef.current.pause();
         backgroundMusicRef.current.currentTime = 0;
       }
+      window.removeEventListener('resize', checkOrientation);
     };
   }, []);
 
@@ -282,37 +291,46 @@ const Timer: React.FC<TimerProps> = ({ duration }) => {
       </div>
 
       {isFullscreen && (
-        <div className="fixed inset-0 bg-[#f7f9fc] flex flex-col items-center justify-center z-50">
-          <div className="text-9xl font-bold text-[#3a86ff] font-mono">
-            {formatTime(timeLeft)}
-          </div>
-          <div className="w-4/5 max-w-3xl h-4 bg-[#e5e5e5] rounded-full mt-10">
-            <div
-              className="h-full bg-[#3a86ff] rounded-full transition-all duration-1000"
-              style={{ width: `${progressPercentage}%` }}
-            ></div>
-          </div>
-          <div className="flex justify-center gap-6 mt-10">
-            <button
-              onClick={toggleTimer}
-              className={`${
-                isRunning ? 'bg-[#e5e5e5] text-[#555555]' : 'bg-[#3a86ff] text-white'
-              } font-bold py-3 px-8 rounded-full hover:translate-y-[-2px] hover:shadow-lg transition-all duration-300`}
-            >
-              {updateButtonState()}
-            </button>
-            <button
-              onClick={resetTimer}
-              className="bg-[#e5e5e5] text-[#555555] font-bold py-3 px-8 rounded-full hover:translate-y-[-2px] hover:shadow-lg transition-all duration-300"
-            >
-              Reset
-            </button>
-            <button
-              onClick={() => setIsFullscreen(false)}
-              className="bg-[#e5e5e5] text-[#555555] font-bold py-3 px-8 rounded-full hover:translate-y-[-2px] hover:shadow-lg transition-all duration-300"
-            >
-              Exit Full Screen
-            </button>
+        <div className="fixed inset-0 bg-[#f7f9fc] flex items-center justify-center z-50">
+          <div 
+            className={`flex flex-col items-center justify-center transition-all duration-300 ${
+              isLandscape ? 'transform rotate-90 w-screen h-screen' : ''
+            }`}
+            style={isLandscape ? { width: '100vh', height: '100vw' } : {}}
+          >
+            <div className="text-9xl font-bold text-[#3a86ff] font-mono">
+              {formatTime(timeLeft)}
+            </div>
+            
+            <div className="w-4/5 max-w-3xl h-4 bg-[#e5e5e5] rounded-full mt-10">
+              <div
+                className="h-full bg-[#3a86ff] rounded-full transition-all duration-1000"
+                style={{ width: `${progressPercentage}%` }}
+              ></div>
+            </div>
+            
+            <div className="flex justify-center gap-6 mt-10">
+              <button
+                onClick={toggleTimer}
+                className={`${
+                  isRunning ? 'bg-[#e5e5e5] text-[#555555]' : 'bg-[#3a86ff] text-white'
+                } font-bold py-3 px-8 rounded-full hover:translate-y-[-2px] hover:shadow-lg transition-all duration-300`}
+              >
+                {updateButtonState()}
+              </button>
+              <button
+                onClick={resetTimer}
+                className="bg-[#e5e5e5] text-[#555555] font-bold py-3 px-8 rounded-full hover:translate-y-[-2px] hover:shadow-lg transition-all duration-300"
+              >
+                Reset
+              </button>
+              <button
+                onClick={() => setIsFullscreen(false)}
+                className="bg-[#e5e5e5] text-[#555555] font-bold py-3 px-8 rounded-full hover:translate-y-[-2px] hover:shadow-lg transition-all duration-300"
+              >
+                Exit Full Screen
+              </button>
+            </div>
           </div>
         </div>
       )}
