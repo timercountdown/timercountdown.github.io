@@ -220,7 +220,7 @@ function getMetaInfo(duration){
   
   metaInfo.title = metaInfo?.title.replace(new RegExp(`\\\${durationEn}`, 'g'), 
     metaInfo.durationEn);
-    console.log(metaInfo)
+    // console.log(metaInfo)
   return metaInfo;
 }
 
@@ -230,7 +230,7 @@ export default async function DynamicTimer({ params }) {
   const duration = parseInt(slug.replace(DEFAULT_END,''), 10);
   
   // 验证duration是一个有效的数字
-  if (isNaN(duration) || duration <= 0 || duration > 60) {
+  if (isNaN(duration) || duration <= 0 ) {
     notFound();
   }
 
