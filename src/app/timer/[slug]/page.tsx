@@ -9,6 +9,20 @@ const DEFAULT_END = '-minute-timer';
 
 const durations = constants.durations;
 const metaMap = {
+  1:{
+    durationEn:'One',
+  },
+  2:{
+    durationEn:'Two',
+    ratingValue:"4.9",
+    ratingCount:"216"
+  },
+  3:{
+    durationEn:'Three',
+  },
+  4:{
+    durationEn:'Four',
+  },
   10:{
     durationEn:'Ten',
     ratingValue:"4.8",
