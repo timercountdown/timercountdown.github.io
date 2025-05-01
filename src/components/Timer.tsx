@@ -4,23 +4,42 @@ import React, { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
 
 interface TimerProps {
-  duration: number; // Duration in minutes
+  days?: number;       // Duration in days
+  hours?: number;      // Duration in hours
+  minutes?: number;    // Duration in minutes
+  seconds?: number;    // Duration in seconds
+  duration?: number;   // Legacy parameter (in minutes) for backward compatibility
+  start?:boolean;
 }
 
-const Timer: React.FC<TimerProps> = ({ duration }) => {
-  const TIMER_DURATION = duration * 60;
-  const [timeLeft, setTimeLeft] = useState(TIMER_DURATION);
+const Timer: React.FC<TimerProps> = ({ 
+  days = 0, 
+  hours = 0, 
+  minutes = 0, 
+  seconds = 0, 
+  duration = 0 ,
+  start = false
+}) => {
+  // Calculate total seconds from all time units
+  // If legacy duration is provided, use it for minutes
+  const totalSeconds = 
+    (days * 24 * 60 * 60) + 
+    (hours * 60 * 60) + 
+    ((minutes || duration) * 60) + 
+    seconds;
+  
+  const [timeLeft, setTimeLeft] = useState(totalSeconds);
   const [isRunning, setIsRunning] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [playSoundOnEnd, setPlaySoundOnEnd] = useState(true);
-  const [playMusic, setPlayMusic] = useState(true);
-  const [notifyOnEnd, setNotifyOnEnd] = useState(true);
+  const [playSoundOnEnd, setPlaySoundOnEnd] = useState(!start);
+  const [playMusic, setPlayMusic] = useState(!start);
+  const [notifyOnEnd, setNotifyOnEnd] = useState(!start);
   const [showNotificationStatus, setShowNotificationStatus] = useState(false);
   const timerIdRef = useRef<NodeJS.Timeout | null>(null);
   const alarmSoundRef = useRef<HTMLAudioElement | null>(null);
   const backgroundMusicRef = useRef<HTMLAudioElement | null>(null);
+  
   const [isLandscape, setIsLandscape] = useState(false);
-
 
   useEffect(() => {
     // Initialize audio elements
@@ -30,6 +49,7 @@ const Timer: React.FC<TimerProps> = ({ duration }) => {
         'https://audio-variant-previews.envatousercontent.com/M4A/38/2c/7e/14/97/v1_E11/E111B876.m4a'
       );
       backgroundMusicRef.current.loop = true;
+      backgroundMusicRef.current.muted = true;
     }
 
     const checkOrientation = () => {
@@ -48,6 +68,9 @@ const Timer: React.FC<TimerProps> = ({ duration }) => {
         backgroundMusicRef.current.currentTime = 0;
       }
       window.removeEventListener('resize', checkOrientation);
+      if(start){
+        toggleTimer();
+      }
     };
   }, []);
 
@@ -84,7 +107,24 @@ const Timer: React.FC<TimerProps> = ({ duration }) => {
       Notification.permission === 'granted' &&
       notifyOnEnd
     ) {
-      const notification = new Notification(`${duration} Minute Timer`, {
+      // Create a formatted time string for notification
+      let timerDescription = "";
+      if (days > 0) timerDescription += `${days} day${days > 1 ? 's' : ''} `;
+      if (hours > 0) timerDescription += `${hours} hour${hours > 1 ? 's' : ''} `;
+      if (minutes > 0 || duration > 0) timerDescription += `${minutes || duration} minute${(minutes > 1 || duration > 1) ? 's' : ''} `;
+      if (seconds > 0) timerDescription += `${seconds} second${seconds > 1 ? 's' : ''} `;
+      
+      // If using legacy duration parameter
+      if (timerDescription.trim() === "" && duration > 0) {
+        timerDescription = `${duration} Minute`;
+      }
+      
+      // Fallback for empty description
+      if (timerDescription.trim() === "") {
+        timerDescription = "Custom";
+      }
+      
+      const notification = new Notification(`${timerDescription}Timer`, {
         body: "Time's up!",
         icon: "/favicon.ico"
       });
@@ -98,10 +138,52 @@ const Timer: React.FC<TimerProps> = ({ duration }) => {
     }
   };
 
-  const formatTime = (seconds: number) => {
-    const mins = Math.floor(seconds / 60).toString().padStart(2, '0');
-    const secs = (seconds % 60).toString().padStart(2, '0');
-    return `${mins}:${secs}`;
+  // Format time to display days, hours, minutes, seconds
+  const formatTime = (totalSeconds: number) => {
+    const days = Math.floor(totalSeconds / (24 * 60 * 60));
+    const hours = Math.floor((totalSeconds % (24 * 60 * 60)) / (60 * 60));
+    const mins = Math.floor((totalSeconds % (60 * 60)) / 60);
+    const secs = totalSeconds % 60;
+    
+    // Only show days and hours if they are non-zero or were specified in props
+    const showDays = days > 0;
+    const showHours = hours > 0 || showDays;
+    
+    let formattedTime = '';
+    
+    if (showDays) {
+      formattedTime += `${days.toString()}:`;
+    }
+    
+    if (showHours) {
+      formattedTime += `${hours.toString().padStart(2, '0')}:`;
+    }
+    
+    formattedTime += `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    
+    return formattedTime;
+  };
+
+  // Create a descriptive timer title
+  const getTimerTitle = () => {
+    const parts = [];
+    
+    if (days > 0) parts.push(`${days} Day${days !== 1 ? 's' : ''}`);
+    if (hours > 0) parts.push(`${hours} Hour${hours !== 1 ? 's' : ''}`);
+    if (minutes > 0) parts.push(`${minutes} Minute${minutes !== 1 ? 's' : ''}`);
+    if (seconds > 0) parts.push(`${seconds} Second${seconds !== 1 ? 's' : ''}`);
+    
+    // If using legacy duration parameter
+    if (parts.length === 0 && duration > 0) {
+      parts.push(`${duration} Minute${duration !== 1 ? 's' : ''}`);
+    }
+    
+    // Fallback for empty description
+    if (parts.length === 0) {
+      return "Custom Timer";
+    }
+    
+    return parts.join(', ') + " Timer";
   };
 
   const updateButtonState = () => {
@@ -125,6 +207,7 @@ const Timer: React.FC<TimerProps> = ({ duration }) => {
       setIsRunning(true);
 
       if (playMusic && backgroundMusicRef.current) {
+        
         backgroundMusicRef.current.play().catch(error => {
           console.error('Error playing background music:', error);
         });
@@ -162,7 +245,7 @@ const Timer: React.FC<TimerProps> = ({ duration }) => {
   const resetTimer = () => {
     if (timerIdRef.current) clearInterval(timerIdRef.current);
     setIsRunning(false);
-    setTimeLeft(TIMER_DURATION);
+    setTimeLeft(totalSeconds);
 
     if (playMusic && backgroundMusicRef.current) {
       backgroundMusicRef.current.pause();
@@ -170,7 +253,7 @@ const Timer: React.FC<TimerProps> = ({ duration }) => {
     }
   };
 
-  const progressPercentage = (timeLeft / TIMER_DURATION) * 100;
+  const progressPercentage = (timeLeft / totalSeconds) * 100;
 
   const handleMusicToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPlayMusic(e.target.checked);
@@ -188,14 +271,17 @@ const Timer: React.FC<TimerProps> = ({ duration }) => {
     }
   };
 
+  // Get the timer title for display
+  const timerTitle = getTimerTitle();
+
   return (
     <>
       <Head>
-        <title>{`${formatTime(timeLeft)} - ${duration} Minute Timer | TimerCountdown`}</title>
+        <title>{`${formatTime(timeLeft)} - ${timerTitle} | TimerCountdown`}</title>
       </Head>
 
       <div className="bg-white rounded-xl shadow-md p-8 my-8 text-center">
-        <h1 className="text-3xl font-bold mb-5">{duration} Minute Timer</h1>
+        <h1 className="text-3xl font-bold mb-5">{timerTitle}</h1>
 
         <div className="h-2 bg-[#e5e5e5] rounded-full mb-8">
           <div

@@ -5,6 +5,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { holidays } from './lib/holiday';
 
 const HomePage: React.FC = () => {
   useEffect(() => {
@@ -14,7 +15,6 @@ const HomePage: React.FC = () => {
     
     if (previewTimerDisplay && previewProgressBar) {
       // This is just a visual preview, not a functional timer
-      // In a real implementation, you might want to create an actual timer functionality
       previewProgressBar.style.width = '100%';
       
       // Optional: Add animation to simulate countdown for preview purposes
@@ -24,11 +24,13 @@ const HomePage: React.FC = () => {
     }
   }, []);
 
+  const now = new Date();
+
   return (
     <>
       <Head>
-        <title>TimerCountdown | Free Online Countdown Timers</title>
-        <meta name="description" content="Free online countdown timers for any purpose. Easy to use timers perfect for cooking, workouts, studying, and presentations." />
+        <title>TimerCountdown | Free Online Countdown Timers & Event Countdowns</title>
+        <meta name="description" content="Free online countdown timers and event countdowns. Easy to use timers for cooking, workouts, studying, and presentations, plus days until holidays and special events." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="canonical" href="https://timercountdown.github.io/"></link>
         <link rel="shortcut icon" href="/favicon.ico" />
@@ -36,14 +38,8 @@ const HomePage: React.FC = () => {
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/favicon.ico" />
         <link rel="apple-touch-icon-precomposed" href="/favicon.ico" />
-        
-       
-        
-        
       </Head>
       
-     
-
       <div className="bg-background text-text-primary leading-normal">
         {/* Schema.org JSON-LD */}
         <script
@@ -63,7 +59,7 @@ const HomePage: React.FC = () => {
                     "width": "256",
                     "height": "256"
                   },
-                  "description": "Free online countdown timers for any purpose. Easy to use timers perfect for cooking, workouts, studying, and presentations."
+                  "description": "Free online countdown timers and event countdowns for any purpose. Easy to use timers perfect for cooking, workouts, studying, and presentations, plus days until holidays and special events."
                 },
                 {
                   "@type": "LocalBusiness",
@@ -71,7 +67,7 @@ const HomePage: React.FC = () => {
                   "name": "TimerCountdown",
                   "url": "https://timercountdown.github.io/",
                   "image": "https://timercountdown.github.io/favicon.ico",
-                  "description": "Provider of free online countdown timers for multiple purposes including cooking, workouts, studying and presentations.",
+                  "description": "Provider of free online countdown timers and event countdowns for multiple purposes including cooking, workouts, studying, presentations, and special events.",
                   "priceRange": "Free",
                   "address": {
                     "@type": "PostalAddress",
@@ -101,7 +97,7 @@ const HomePage: React.FC = () => {
                   "@id": "https://timercountdown.github.io/#website",
                   "url": "https://timercountdown.github.io/",
                   "name": "TimerCountdown",
-                  "description": "Free online countdown timers for any purpose",
+                  "description": "Free online countdown timers and event countdowns for any purpose",
                   "publisher": {
                     "@id": "https://timercountdown.github.io/#organization"
                   }
@@ -110,14 +106,14 @@ const HomePage: React.FC = () => {
                   "@type": "WebPage",
                   "@id": "https://timercountdown.github.io/#webpage",
                   "url": "https://timercountdown.github.io/",
-                  "name": "TimerCountdown | Free Online Countdown Timers",
+                  "name": "TimerCountdown | Free Online Countdown Timers & Event Countdowns",
                   "isPartOf": {
                     "@id": "https://timercountdown.github.io/#website"
                   },
                   "about": {
                     "@id": "https://timercountdown.github.io/#organization"
                   },
-                  "description": "Free online countdown timers for any purpose. Easy to use timers perfect for cooking, workouts, studying, and presentations.",
+                  "description": "Free online countdown timers and event countdowns for any purpose. Easy to use timers perfect for cooking, workouts, studying, and presentations, plus days until holidays and special events.",
                   "inLanguage": "en-US"
                 },
                 {
@@ -145,20 +141,32 @@ const HomePage: React.FC = () => {
                     {
                       "@type": "ListItem",
                       "position": 1,
-                      "url": "https://timercountdown.github.io/5-minute-timer.html",
+                      "url": "https://timercountdown.github.io/timer/5-minute-timer",
                       "name": "5 Minute Timer"
                     },
                     {
                       "@type": "ListItem",
                       "position": 2,
-                      "url": "https://timercountdown.github.io/10-minute-timer.html",
+                      "url": "https://timercountdown.github.io/timer/10-minute-timer",
                       "name": "10 Minute Timer"
                     },
                     {
                       "@type": "ListItem",
                       "position": 3,
-                      "url": "https://timercountdown.github.io/15-minute-timer.html",
+                      "url": "https://timercountdown.github.io/timer/15-minute-timer",
                       "name": "15 Minute Timer"
+                    },
+                    {
+                      "@type": "ListItem",
+                      "position": 4,
+                      "url": "https://timercountdown.github.io/days-until/christmas",
+                      "name": "Days Until Christmas"
+                    },
+                    {
+                      "@type": "ListItem",
+                      "position": 5,
+                      "url": "https://timercountdown.github.io/days-until/newyear",
+                      "name": "Days Until New Year"
                     }
                   ]
                 },
@@ -174,13 +182,6 @@ const HomePage: React.FC = () => {
                       "category": "free",
                       "price": "0",
                       "priceCurrency": "USD"
-                    },
-                    "aggregateRating": {
-                      "@type": "AggregateRating",
-                      "ratingValue": "4.8",
-                      "ratingCount": "253",
-                      "bestRating": "5",
-                      "worstRating": "1"
                     }
                   },
                   "author": {
@@ -208,13 +209,6 @@ const HomePage: React.FC = () => {
                       "category": "free",
                       "price": "0",
                       "priceCurrency": "USD"
-                    },
-                    "aggregateRating": {
-                      "@type": "AggregateRating",
-                      "ratingValue": "4.8",
-                      "ratingCount": "253",
-                      "bestRating": "5",
-                      "worstRating": "1"
                     }
                   },
                   "author": {
@@ -263,7 +257,7 @@ const HomePage: React.FC = () => {
                       "name": "What can I use TimerCountdown for?",
                       "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "TimerCountdown is perfect for many activities including cooking, workouts, studying with the Pomodoro technique, presentations, meetings, and any activity where you need to track time."
+                        "text": "TimerCountdown offers two main features: minute-based countdown timers perfect for cooking, workouts, studying with the Pomodoro technique, presentations, and meetings; and 'Days Until' countdowns for tracking the days remaining until holidays and special events."
                       }
                     }
                   ]
@@ -286,33 +280,46 @@ const HomePage: React.FC = () => {
             })
           }}
         />
-        <div className="max-w-screen-lg mx-auto px-5 py-5">
-          <Header />
-          
+        <div>
           <main>
             {/* Hero Section */}
             <div className="bg-card rounded-xl shadow-md p-8 my-8 text-center">
-              <h1 className="text-4xl font-bold mb-3 text-text-primary">Free Online Countdown Timers</h1>
-              <p className="text-lg text-text-secondary mb-8">Simple, reliable timers for any task or activity</p>
+              <h1 className="text-4xl font-bold mb-3 text-text-primary">Free Online Countdowns & Timers</h1>
+              <p className="text-lg text-text-secondary mb-8">Simple, reliable countdowns for any task, activity or event</p>
               
               <div className="flex flex-wrap justify-center gap-4 mb-6">
-                <Link href="/timer/5-minute-timer" className="bg-primary text-white font-bold py-3 px-6 rounded-lg hover:translate-y-[-2px] hover:shadow-lg transition-all duration-300">5 Min</Link>
-                <Link href="/timer/10-minute-timer" className="bg-blue-100 text-primary font-bold py-3 px-6 rounded-lg hover:bg-blue-200 transition-all duration-300">10 Min</Link>
-                <Link href="/timer/15-minute-timer" className="bg-blue-100 text-primary font-bold py-3 px-6 rounded-lg hover:bg-blue-200 transition-all duration-300">15 Min</Link>
+                <Link href="/timer/5-minute-timer" className="bg-primary text-white font-bold py-3 px-6 rounded-lg hover:translate-y-[-2px] hover:shadow-lg transition-all duration-300">5 Min Timer</Link>
+                <Link href="/timer/10-minute-timer" className="bg-blue-100 text-primary font-bold py-3 px-6 rounded-lg hover:bg-blue-200 transition-all duration-300">10 Min Timer</Link>
+                <Link href="/days-until/christmas" className="bg-green-600 text-white font-bold py-3 px-6 rounded-lg hover:translate-y-[-2px] hover:shadow-lg transition-all duration-300">Days Until Christmas</Link>
               </div>
 
-              <p className="text-text-secondary">Choose any timer above or try our popular <Link href="/timer/5-minute-timer" className="text-primary font-medium">5 minute timer</Link></p>
+              <p className="text-text-secondary">Choose any countdown above or try our popular <Link href="/timer/5-minute-timer" className="text-primary font-medium">5 minute timer</Link></p>
             </div>
             
-            {/* Featured Timer Preview */}
-            <div className="bg-card rounded-xl shadow-md p-8 my-8">
-              <h2 className="text-2xl font-bold mb-5 text-center">Quick 5 Minute Timer</h2>
-              <div className="h-2 bg-secondary rounded-full mb-6">
-                <div id="previewProgressBar" className="h-full bg-primary rounded-full w-full transition-all duration-1000"></div>
+            {/* Two Main Features */}
+            <div className="grid md:grid-cols-2 gap-8 my-12">
+              {/* Minute Timer Feature */}
+              <div className="bg-card rounded-xl shadow-md p-8">
+                <h2 className="text-2xl font-bold mb-5 text-center">Minute Timers</h2>
+                <div className="h-2 bg-secondary rounded-full mb-6">
+                  <div id="previewProgressBar" className="h-full bg-primary rounded-full w-full transition-all duration-1000"></div>
+                </div>
+                <div id="previewTimerDisplay" className="text-5xl md:text-6xl font-bold text-primary my-6 text-center font-mono">05:00</div>
+                <div className="flex justify-center gap-4 mb-4">
+                  <Link href="/timer/5-minute-timer" className="bg-primary text-white font-bold py-3 px-8 rounded-full hover:translate-y-[-2px] hover:shadow-lg transition-all duration-300">Use Full Timer</Link>
+                </div>
+                <p className="text-text-secondary text-center">Perfect for cooking, workouts, studying, and more</p>
               </div>
-              <div id="previewTimerDisplay" className="text-5xl md:text-6xl font-bold text-primary my-6 text-center font-mono">05:00</div>
-              <div className="flex justify-center gap-4">
-                <Link href="/timer/5-minute-timer" className="bg-primary text-white font-bold py-3 px-8 rounded-full hover:translate-y-[-2px] hover:shadow-lg transition-all duration-300">Use Full Timer</Link>
+              
+              {/* Days Until Feature */}
+              <div className="bg-card rounded-xl shadow-md p-8">
+                <h2 className="text-2xl font-bold mb-5 text-center">Days Until Events</h2>
+                <div className="text-5xl md:text-6xl font-bold text-green-600 my-6 text-center font-mono">{Math.floor((holidays['christmas'].getNextDate().getTime() - now.getTime()) / (1000 * 60 * 60 * 24))}</div>
+                <div className="text-xl text-center font-semibold text-green-700 mb-6">Days Until Christmas</div>
+                <div className="flex justify-center gap-4 mb-4">
+                  <Link href="/days-until/christmas" className="bg-green-600 text-white font-bold py-3 px-8 rounded-full hover:translate-y-[-2px] hover:shadow-lg transition-all duration-300">View Full Countdown</Link>
+                </div>
+                <p className="text-text-secondary text-center">Track the days until holidays and special events</p>
               </div>
             </div>
             
@@ -323,7 +330,7 @@ const HomePage: React.FC = () => {
               <div className="grid md:grid-cols-3 gap-5">
                 <div className="bg-card rounded-lg p-5 shadow hover:shadow-lg transition-all duration-300">
                   <h3 className="text-xl font-bold text-text-primary mb-2">Easy to Use</h3>
-                  <p className="text-text-secondary">No downloads or installations needed. Our timers start with just one click - simple and hassle-free.</p>
+                  <p className="text-text-secondary">No downloads or installations needed. Our countdowns start with just one click - simple and hassle-free.</p>
                 </div>
                 
                 <div className="bg-card rounded-lg p-5 shadow hover:shadow-lg transition-all duration-300">
@@ -333,41 +340,14 @@ const HomePage: React.FC = () => {
                 
                 <div className="bg-card rounded-lg p-5 shadow hover:shadow-lg transition-all duration-300">
                   <h3 className="text-xl font-bold text-text-primary mb-2">Completely Free</h3>
-                  <p className="text-text-secondary">All our timers are free to use with no ads interrupting your focus or workflow.</p>
+                  <p className="text-text-secondary">All our countdowns are free to use with no ads interrupting your focus or workflow.</p>
                 </div>
               </div>
             </div>
             
-            {/* Use Cases */}
-            <div className="my-12">
-              <h2 className="text-2xl font-bold text-text-primary mb-6 text-center">Perfect For Any Activity</h2>
-              
-              <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-5">
-                <div className="bg-blue-50 rounded-lg p-4 text-center transition-all duration-300 hover:bg-blue-100">
-                  <h4 className="text-primary font-bold mb-2">Cooking</h4>
-                  <p className="text-text-secondary">Time your recipes perfectly every time with our reliable timers.</p>
-                </div>
-                
-                <div className="bg-blue-50 rounded-lg p-4 text-center transition-all duration-300 hover:bg-blue-100">
-                  <h4 className="text-primary font-bold mb-2">Workouts</h4>
-                  <p className="text-text-secondary">Perfect for interval training, rest periods, and timed exercises.</p>
-                </div>
-                
-                <div className="bg-blue-50 rounded-lg p-4 text-center transition-all duration-300 hover:bg-blue-100">
-                  <h4 className="text-primary font-bold mb-2">Studying</h4>
-                  <p className="text-text-secondary">Use the Pomodoro technique with timed study sessions and breaks.</p>
-                </div>
-                
-                <div className="bg-blue-50 rounded-lg p-4 text-center transition-all duration-300 hover:bg-blue-100">
-                  <h4 className="text-primary font-bold mb-2">Presentations</h4>
-                  <p className="text-text-secondary">Keep your speeches and meetings on schedule and well-organized.</p>
-                </div>
-              </div>
-            </div>
-
             {/* Popular Timers */}
             <div className="my-12">
-              <h2 className="text-2xl font-bold text-text-primary mb-6 text-center">Popular Timers</h2>
+              <h2 className="text-2xl font-bold text-text-primary mb-6 text-center">Popular Minute Timers</h2>
               
               <div className="grid md:grid-cols-3 gap-6">
                 <Link href="/timer/5-minute-timer" className="bg-card rounded-lg p-6 shadow text-center hover:shadow-lg transition-all duration-300 no-underline">
@@ -395,9 +375,58 @@ const HomePage: React.FC = () => {
                 </Link>
               </div>
             </div>
+            
+            {/* Popular Days Until Countdowns */}
+            <div className="my-12">
+              <h2 className="text-2xl font-bold text-text-primary mb-6 text-center">Popular Event Countdowns</h2>
+              
+              <div className="grid md:grid-cols-3 gap-6">
+                <Link href="/days-until/christmas" className="bg-card rounded-lg p-6 shadow text-center hover:shadow-lg transition-all duration-300 no-underline">
+                  <h3 className="text-xl font-bold text-green-600 mb-2">Days Until Christmas</h3>
+                  <div className="text-3xl font-bold text-green-700 my-3">{Math.floor((holidays['christmas'].getNextDate().getTime() - now.getTime()) / (1000 * 60 * 60 * 24))}</div>
+                  <p className="text-text-secondary">Track the countdown to the most wonderful time of the year.</p>
+                </Link>
+                
+                <Link href="/days-until/newyear" className="bg-card rounded-lg p-6 shadow text-center hover:shadow-lg transition-all duration-300 no-underline">
+                  <h3 className="text-xl font-bold text-green-600 mb-2">Days Until New Year</h3>
+                  <div className="text-3xl font-bold text-green-700 my-3">{Math.floor((holidays['newyear'].getNextDate().getTime() - now.getTime()) / (1000 * 60 * 60 * 24))}</div>
+                  <p className="text-text-secondary">Count the days until we welcome in the next year.</p>
+                </Link>
+                
+                <Link href="/days-until" className="bg-card rounded-lg p-6 shadow text-center hover:shadow-lg transition-all duration-300 no-underline">
+                  <h3 className="text-xl font-bold text-green-600 mb-2">How many days until holidays</h3>
+                  <p className="text-text-secondary">Keep track of the days until the most romantic day of the year.</p>
+                </Link>
+              </div>
+            </div>
+            
+            {/* Use Cases */}
+            <div className="my-12">
+              <h2 className="text-2xl font-bold text-text-primary mb-6 text-center">Perfect For Any Activity</h2>
+              
+              <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-5">
+                <div className="bg-blue-50 rounded-lg p-4 text-center transition-all duration-300 hover:bg-blue-100">
+                  <h4 className="text-primary font-bold mb-2">Cooking</h4>
+                  <p className="text-text-secondary">Time your recipes perfectly with our reliable minute timers.</p>
+                </div>
+                
+                <div className="bg-blue-50 rounded-lg p-4 text-center transition-all duration-300 hover:bg-blue-100">
+                  <h4 className="text-primary font-bold mb-2">Workouts</h4>
+                  <p className="text-text-secondary">Perfect for interval training, rest periods, and timed exercises.</p>
+                </div>
+                
+                <div className="bg-blue-50 rounded-lg p-4 text-center transition-all duration-300 hover:bg-blue-100">
+                  <h4 className="text-primary font-bold mb-2">Event Planning</h4>
+                  <p className="text-text-secondary">Track days until holidays, birthdays, weddings, and more.</p>
+                </div>
+                
+                <div className="bg-blue-50 rounded-lg p-4 text-center transition-all duration-300 hover:bg-blue-100">
+                  <h4 className="text-primary font-bold mb-2">Studying</h4>
+                  <p className="text-text-secondary">Use the Pomodoro technique with timed study sessions and breaks.</p>
+                </div>
+              </div>
+            </div>
           </main>
-          
-          <Footer />
         </div>
       </div>
     </>
