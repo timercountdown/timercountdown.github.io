@@ -3,8 +3,7 @@ import { holidays } from '@/app/lib/holiday';
 
 
 
-
-const HolidayPage: React.FC = async ({ params }) => {
+export default async function HolidayPage({ params }){
     const xparams = await params
 
     return <HolidayPageClient params={xparams} />
@@ -52,5 +51,3 @@ export async function generateMetadata({ params }) {
     },
   };
 }
-
-export default HolidayPage;
