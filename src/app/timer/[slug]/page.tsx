@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { notFound } from 'next/navigation';
 import { constants } from '@/utils/constants';
+import Link from 'next/link';
 
 const DEFAULT_END = '-minute-timer';
 
@@ -355,11 +356,11 @@ export default async function DynamicTimer({ params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="max-w-screen-lg mx-auto px-5 py-5">
-        <Header />
+      <div>
+        
         
         <main>
-          <Timer duration={duration} />
+          <Timer minutes={duration} />
           
           <div className="grid md:grid-cols-3 gap-5 my-10">
             <div className="bg-white rounded-lg p-5 shadow">
@@ -405,8 +406,19 @@ export default async function DynamicTimer({ params }) {
             </div>
           </div>
         </main>
+        <div className="my-10">
+        <h2 className="text-2xl font-bold text-[#2b2d42] mb-4">Related Timers</h2>
+        <div className="grid md:grid-cols-2 gap-5">
+          {durations.map(duration =>(
+            <Link key={duration} href={`/timer/${duration}-minute-timer/`} className="bg-white rounded-lg p-5 shadow no-underline flex flex-col items-center hover:shadow-lg transition-all duration-300">
+            <h3 className="text-xl font-bold text-[#3a86ff] mb-2">{duration} Minute Timer</h3>
+            <p className="text-[#555555] text-center">Need a shorter countdown? Try our {duration} minute timer for quick tasks.</p>
+          </Link>
+          ))}
+         
+        </div>
+      </div>
         
-        <Footer />
       </div>
     </div>
   );
