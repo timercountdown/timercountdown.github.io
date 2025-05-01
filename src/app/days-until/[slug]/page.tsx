@@ -2,13 +2,9 @@ import HolidayPageClient from "./page-client";
 import { holidays } from '@/app/lib/holiday';
 
 
-interface PageProps {
-    params: {
-      slug: string;
-    };
-  }
 
-const HolidayPage: React.FC<PageProps> = async ({ params }) => {
+
+const HolidayPage: React.FC = async ({ params }) => {
     const xparams = await params
 
     return <HolidayPageClient params={xparams} />
