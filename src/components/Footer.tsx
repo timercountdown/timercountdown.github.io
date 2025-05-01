@@ -1,5 +1,6 @@
 import { constants } from '@/utils/constants';
 import Link from 'next/link';
+import TrustBox from './TrustBox';
 
 const Footer = () => {
   const durations = constants.durations;
@@ -18,6 +19,7 @@ const Footer = () => {
          
         </div>
       </div>
+      
       <p>&copy; 2025 TimerCountdown. All rights reserved. 
         <Link href="/privacy-policy/" className="text-[#3a86ff] no-underline ml-1">Privacy Policy</Link> | 
         <Link href="/terms-of-use/" className="text-[#3a86ff] no-underline ml-1">Terms of Use</Link>
