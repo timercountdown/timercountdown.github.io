@@ -1,5 +1,6 @@
 import { constants } from '@/utils/constants';
 import { NextResponse } from 'next/server';
+import { holidays } from '../lib/holiday';
 
  
 export async function GET() {
@@ -8,6 +9,15 @@ export async function GET() {
   durations.forEach(duration =>{
     urls.push({
       "url": `${constants.domain}/timer/${duration}-minute-timer`,
+      "lastModified": new Date().toISOString(),
+      "changeFrequency": 'daily',
+      "priority": 1,
+    })
+  })
+
+  Object.keys(holidays).forEach(holiday =>{
+    urls.push({
+      "url": `${constants.domain}/days-until/${holiday}`,
       "lastModified": new Date().toISOString(),
       "changeFrequency": 'daily',
       "priority": 1,
