@@ -24,6 +24,9 @@ const metaMap = {
   4:{
     durationEn:'Four',
   },
+  5:{
+    durationEn:'Five',
+  },
   10:{
     durationEn:'Ten',
     ratingValue:"4.8",
@@ -119,6 +122,9 @@ const metaMap = {
         "datePublished": "2025-02-22",
         "reviewBody": "The 15 minute timer is perfect for my HIIT workouts. The audio alerts are clear and the background music keeps me motivated throughout my exercise routine."
       }],
+  },
+  30:{
+    durationEn:'Thirty',
   },
   default:{
     durationEn:'${duration}',
