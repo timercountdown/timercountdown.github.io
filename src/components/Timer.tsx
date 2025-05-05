@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
+
 
 interface TimerProps {
   days?: number;       // Duration in days
@@ -318,6 +320,16 @@ const Timer: React.FC<TimerProps> = ({
           <label htmlFor="musicToggle" className="font-medium">
             Play music during countdown
           </label>
+        </div>
+
+        <div className="flex items-center justify-center mb-3">
+          <Link href="/white-noise/office" className="text-[#3a86ff] hover:underline flex items-center" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
+              <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+              <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+            </svg>
+            Open white noise player for office
+          </Link>
         </div>
 
         <div className="flex items-center justify-center mb-5">
