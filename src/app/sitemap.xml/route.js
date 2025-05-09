@@ -4,16 +4,18 @@ import { holidays } from '../lib/holiday';
 
  
 export async function GET() {
-  const durations = constants.durations;
   const urls = [];
-  durations.forEach(duration =>{
-    urls.push({
-      "url": `${constants.domain}/timer/${duration}-minute-timer`,
-      "lastModified": new Date().toISOString(),
-      "changeFrequency": 'daily',
-      "priority": 1,
-    })
-  })
+  constants.timeUnits.forEach(unit => (
+    constants.durations.forEach(d => (
+      urls.push({
+        "url": `${constants.domain}/timer/${d}-${unit}-timer`,
+        "lastModified": new Date().toISOString(),
+        "changeFrequency": 'daily',
+        "priority": 1,
+      })
+    ))
+  ));
+  
 
   Object.keys(holidays).forEach(holiday =>{
     urls.push({
@@ -31,7 +33,7 @@ export async function GET() {
         <lastmod>${url.lastModified}</lastmod>
         <changefreq>${url.changeFrequency}</changefreq>
         <priority>${url.priority}</priority>
-      </url>`})}
+      </url>`}).join('')}
     </urlset>`;
 
 

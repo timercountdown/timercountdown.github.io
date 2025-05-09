@@ -3,7 +3,6 @@ import Link from 'next/link';
 import TrustBox from './TrustBox';
 
 const Footer = () => {
-  const durations = constants.durations;
 
   return (
     <footer className="text-center py-5 border-t border-gray-200 text-[#777777] mt-10">
