@@ -6,9 +6,7 @@ import { notFound } from 'next/navigation';
 import { constants } from '@/utils/constants';
 import Link from 'next/link';
 
-const DEFAULT_END = '-minute-timer';
 
-const durations = constants.durations;
 const metaMap = {
   1:{
     durationEn:'One',
@@ -36,7 +34,7 @@ const metaMap = {
       "@type": "Review",
       "itemReviewed": {
         "@type": "SoftwareApplication",
-        "name": "10 Minute Timer",
+        "name": "10 ${unit} Timer",
         "applicationCategory": "WebApplication",
         "operatingSystem": "All"
       },
@@ -51,13 +49,13 @@ const metaMap = {
         "worstRating": "1"
       },
       "datePublished": "2025-02-18",
-      "reviewBody": "This 10 minute timer is perfect for my daily Pomodoro breaks. The interface is clean and the alarm is just right - not too jarring but definitely noticeable."
+      "reviewBody": "This 10 ${unit} timer is perfect for my daily Pomodoro breaks. The interface is clean and the alarm is just right - not too jarring but definitely noticeable."
     },
     {
       "@type": "Review",
       "itemReviewed": {
         "@type": "SoftwareApplication",
-        "name": "10 Minute Timer",
+        "name": "10 ${unit} Timer",
         "applicationCategory": "WebApplication",
         "operatingSystem": "All"
       },
@@ -72,7 +70,7 @@ const metaMap = {
         "worstRating": "1"
       },
       "datePublished": "2025-01-30",
-      "reviewBody": "I use this 10 minute timer for my HIIT workout intervals. The full screen mode is great for visibility across the room, and the background music helps keep me motivated."
+      "reviewBody": "I use this 10 ${unit} timer for my HIIT workout intervals. The full screen mode is great for visibility across the room, and the background music helps keep me motivated."
     }],
   },
   15:{
@@ -84,7 +82,7 @@ const metaMap = {
         "@type": "Review",
         "itemReviewed": {
           "@type": "SoftwareApplication",
-          "name": "15 Minute Timer with Music",
+          "name": "15 ${unit} Timer with Music",
           "applicationCategory": "WebApplication",
           "operatingSystem": "All"
         },
@@ -99,13 +97,13 @@ const metaMap = {
           "worstRating": "1"
         },
         "datePublished": "2025-03-15",
-        "reviewBody": "I use this 15 minute timer daily for my meditation practice. The background music feature is perfect for helping me focus, and the interface is clean and simple to use."
+        "reviewBody": "I use this 15 ${unit} timer daily for my meditation practice. The background music feature is perfect for helping me focus, and the interface is clean and simple to use."
       },
       {
         "@type": "Review",
         "itemReviewed": {
           "@type": "SoftwareApplication",
-          "name": "15 Minute Timer with Music",
+          "name": "15 ${unit} Timer with Music",
           "applicationCategory": "WebApplication",
           "operatingSystem": "All"
         },
@@ -120,7 +118,7 @@ const metaMap = {
           "worstRating": "1"
         },
         "datePublished": "2025-02-22",
-        "reviewBody": "The 15 minute timer is perfect for my HIIT workouts. The audio alerts are clear and the background music keeps me motivated throughout my exercise routine."
+        "reviewBody": "The 15 ${unit} timer is perfect for my HIIT workouts. The audio alerts are clear and the background music keeps me motivated throughout my exercise routine."
       }],
   },
   30:{
@@ -128,20 +126,20 @@ const metaMap = {
   },
   default:{
     durationEn:'${duration}',
-    name:'${duration} minute timer',
-    title:'${duration} Minute Timer | ${durationEn} Minute Timer | ${duration} minutes timer',
-    desc:'Free online ${duration} minute timer with alarm. Easy to use countdown timer perfect for cooking, workouts, studying, and presentations.',
+    name:'${duration} ${unit} timer',
+    title:'${duration} ${unit} Timer | ${durationEn} ${unit} Timer | ${duration} ${unit}s timer',
+    desc:'Free online ${duration} ${unit} timer with alarm. Easy to use countdown timer perfect for cooking, workouts, studying, and presentations.',
     ratingValue:"4.9",
     ratingCount:"192",
     howTo:{
       "@type": "HowTo",
-      "name": "How to Use This ${duration} Minute Timer",
-      "description": "This free online ${duration} minute timer is perfect for timing various activities. Simply press the Start button to begin the countdown from ${duration}:00. You can pause at any time and reset to start over.",
+      "name": "How to Use This ${duration} ${unit} Timer",
+      "description": "This free online ${duration} ${unit} timer is perfect for timing various activities. Simply press the Start button to begin the countdown from ${duration}. You can pause at any time and reset to start over.",
       "step": [
         {
           "@type": "HowToStep",
           "name": "Start the timer",
-          "text": "Press the Start button to begin the countdown from ${duration}:00."
+          "text": "Press the Start button to begin the countdown from ${duration}."
         },
         {
           "@type": "HowToStep",
@@ -168,22 +166,22 @@ const metaMap = {
     },
     faq:{
       "@type": "FAQPage",
-      "@id": "https://timercountdown.github.io/timer/${duration}-minute-timer.html#faqpage",
+      "@id": "https://timercountdown.github.io/timer/${duration}-${unit}-timer.html#faqpage",
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Is the ${duration} minute timer free to use?",
+          "name": "Is the ${duration} ${unit} timer free to use?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes, the ${duration} minute timer is completely free to use with no ads interrupting your focus or workflow."
+            "text": "Yes, the ${duration} ${unit} timer is completely free to use with no ads interrupting your focus or workflow."
           }
         },
         {
           "@type": "Question",
-          "name": "Does the ${duration} minute timer work on mobile devices?",
+          "name": "Does the ${duration} ${unit} timer work on mobile devices?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes, the ${duration} minute timer is fully responsive and works on all devices including smartphones, tablets, and desktop computers."
+            "text": "Yes, the ${duration} ${unit} timer is fully responsive and works on all devices including smartphones, tablets, and desktop computers."
           }
         },
         {
@@ -191,7 +189,7 @@ const metaMap = {
           "name": "Can I play background music while using the timer?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes, you can toggle background music on or off using the music option while your ${duration} minute countdown is running."
+            "text": "Yes, you can toggle background music on or off using the music option while your ${duration} ${unit} countdown is running."
           }
         },
         {
@@ -199,7 +197,7 @@ const metaMap = {
           "name": "Will I get notified when the timer ends?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes, you can receive audio notifications and browser notifications when your ${duration} minute timer completes, even if you're in another tab."
+            "text": "Yes, you can receive audio notifications and browser notifications when your ${duration} ${unit} timer completes, even if you're in another tab."
           }
         }
       ]
@@ -209,8 +207,14 @@ const metaMap = {
 }
 
 export async function generateStaticParams() {
-  
-  return durations.map(d =>{return {slug:`${d}${DEFAULT_END}`}});
+  const params = [];
+  constants.timeUnits.forEach(unit => {
+    constants.durations.forEach(d => {
+      params.push({ slug: `${d}-${unit}-timer` });
+      
+    });
+  });
+  return params;
 }
 
 interface TimerPageProps {
@@ -235,9 +239,11 @@ function replacePlaceholders(obj, placeholder, value) {
   return obj;
 }
 
-function getMetaInfo(duration){
+function getMetaInfo({duration,unit}){
   const temp = {...metaMap.default,...metaMap[duration]};
-  const metaInfo = replacePlaceholders(temp,'duration',duration)
+  const metaInfo = replacePlaceholders(
+      replacePlaceholders(temp,'duration',duration)
+  ,'unit',unit)
   
   metaInfo.title = metaInfo?.title.replace(new RegExp(`\\\${durationEn}`, 'g'), 
     metaInfo.durationEn);
@@ -248,16 +254,61 @@ function getMetaInfo(duration){
 export default async function DynamicTimer({ params }) {
   const { slug } = await params
 
-  const duration = parseInt(slug.replace(DEFAULT_END,''), 10);
+  const match = slug.match(/^(\d+)-(second|minute|hour|day)-timer$/);
   
-  // 验证duration是一个有效的数字
-  if (isNaN(duration) || duration <= 0 ) {
+  if (!match) {
+    notFound();
+  }
+  
+  const count = parseInt(match[1], 10);
+  let unit = match[2];
+  
+  // Set the appropriate timer props based on the unit
+  const timerProps = {
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  };
+  
+  switch (unit) {
+    case 'second':
+      timerProps.seconds = count;
+      break;
+    case 'minute':
+      timerProps.minutes = count;
+      break;
+    case 'hour':
+      timerProps.hours = count;
+      break;
+    case 'day':
+      timerProps.days = count;
+      break;
+    default:
+      notFound();
+  }
+  
+  if (isNaN(count) || count <= 0) {
     notFound();
   }
 
-  const metaInfo = getMetaInfo(duration);
-  
+  const displayTime = `${count} ${unit}`;
 
+
+  const metaInfo = getMetaInfo({duration:count,unit});
+  
+  const itemListElement = [];
+  let k=0;
+  constants.timeUnits.forEach(unit => (
+    constants.durations.forEach(d => (
+      itemListElement.push({
+        "@type": "ListItem",
+          "position": k++,
+          "url": `https://timercountdown.github.io/timer/${d}-${unit}-timer`,
+          "name": `${d} ${unit} Timer`
+      })
+    ))
+  ));
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -287,8 +338,8 @@ export default async function DynamicTimer({ params }) {
       },
       {
         "@type": "WebPage",
-        "@id": `https://timercountdown.github.io/${duration}-minute-timer.html#webpage`,
-        "url": `https://timercountdown.github.io/${duration}-minute-timer.html`,
+        "@id": `https://timercountdown.github.io/timer/${slug}#webpage`,
+        "url": `https://timercountdown.github.io/timer/${slug}`,
         "name": metaInfo.name,
         "isPartOf": {
           "@id": "https://timercountdown.github.io/#website"
@@ -320,7 +371,7 @@ export default async function DynamicTimer({ params }) {
       },
       {
         "@type": "BreadcrumbList",
-        "@id": `https://timercountdown.github.io/${duration}-minute-timer.html#breadcrumblist`,
+        "@id": `https://timercountdown.github.io/timer/${slug}#breadcrumblist`,
         "itemListElement": [
           {
             "@type": "ListItem",
@@ -334,7 +385,7 @@ export default async function DynamicTimer({ params }) {
             "@type": "ListItem",
             "position": 2,
             "item": {
-              "@id": `https://timercountdown.github.io/${duration}-minute-timer.html`,
+              "@id": `https://timercountdown.github.io/timer/${slug}`,
               "name": metaInfo.name
             }
           }
@@ -345,16 +396,13 @@ export default async function DynamicTimer({ params }) {
       ...metaInfo?.reviews,
       {
         "@type": "ItemList",
-        "itemListElement": durations.map((d,i) =>{return {
-          "@type": "ListItem",
-          "position": i,
-          "url": `https://timercountdown.github.io/${d}-minute-timer.html`,
-          "name": `${d} minute timer`
-        }})
+        "itemListElement": itemListElement
         
       }
     ]
   }
+
+  
   
   return (
     <div className="bg-[#f7f9fc] text-[#2b2d42] leading-normal">
@@ -366,12 +414,17 @@ export default async function DynamicTimer({ params }) {
         
         
         <main>
-          <Timer minutes={duration} />
+          <Timer 
+           days={timerProps.days}
+           hours={timerProps.hours}
+           minutes={timerProps.minutes}
+           seconds={timerProps.seconds}
+          />
           
           <div className="grid md:grid-cols-3 gap-5 my-10">
             <div className="bg-white rounded-lg p-5 shadow">
               <h3 className="text-xl font-bold mb-2">Simple to Use</h3>
-              <p className="text-[#555555]">Just press start and the {duration} minute countdown begins immediately. No setup required.</p>
+              <p className="text-[#555555]">Just press start and the {displayTime} countdown begins immediately. No setup required.</p>
             </div>
             
             <div className="bg-white rounded-lg p-5 shadow">
@@ -381,18 +434,18 @@ export default async function DynamicTimer({ params }) {
             
             <div className="bg-white rounded-lg p-5 shadow">
               <h3 className="text-xl font-bold mb-2">Audio Alert & Notifications</h3>
-              <p className="text-[#555555]">Get notified with sound and browser notifications when your {duration} minutes are up, even if you're in another tab.</p>
+              <p className="text-[#555555]">Get notified with sound and browser notifications when your {displayTime} are up, even if you're in another tab.</p>
             </div>
           </div>
           
           <div className="my-10">
-            <h2 className="text-2xl font-bold mb-4">How to Use This {duration} Minute Timer</h2>
-            <p className="mb-5">This free online {duration} minute timer is perfect for timing various activities. Simply press the Start button to begin the countdown from {duration}:00. You can pause at any time and reset to start over.</p>
+            <h2 className="text-2xl font-bold mb-4">How to Use This {displayTime} Timer</h2>
+            <p className="mb-5">This free online {displayTime} timer is perfect for timing various activities. Simply press the Start button to begin the countdown from {displayTime}. You can pause at any time and reset to start over.</p>
             
             <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-5 mt-5">
               <div className="bg-blue-50 rounded-lg p-4 text-center">
                 <h4 className="text-[#3a86ff] font-bold mb-2">Cooking</h4>
-                <p className="text-[#555555]">Perfect for timing recipes that need a quick {duration} minute cooking time.</p>
+                <p className="text-[#555555]">Perfect for timing recipes that need a quick {displayTime} cooking time.</p>
               </div>
               
               <div className="bg-blue-50 rounded-lg p-4 text-center">
@@ -402,7 +455,7 @@ export default async function DynamicTimer({ params }) {
               
               <div className="bg-blue-50 rounded-lg p-4 text-center">
                 <h4 className="text-[#3a86ff] font-bold mb-2">Studying</h4>
-                <p className="text-[#555555]">Use the Pomodoro technique with {duration} minute sessions or breaks between study periods.</p>
+                <p className="text-[#555555]">Use the Pomodoro technique with {displayTime} sessions or breaks between study periods.</p>
               </div>
               
               <div className="bg-blue-50 rounded-lg p-4 text-center">
@@ -415,11 +468,13 @@ export default async function DynamicTimer({ params }) {
         <div className="my-10">
         <h2 className="text-2xl font-bold text-[#2b2d42] mb-4">Related Timers</h2>
         <div className="grid md:grid-cols-2 gap-5">
-          {durations.map(duration =>(
-            <Link key={duration} href={`/timer/${duration}-minute-timer/`} className="bg-white rounded-lg p-5 shadow no-underline flex flex-col items-center hover:shadow-lg transition-all duration-300">
-            <h3 className="text-xl font-bold text-[#3a86ff] mb-2">{duration} Minute Timer</h3>
-            <p className="text-[#555555] text-center">Need a shorter countdown? Try our {duration} minute timer for quick tasks.</p>
-          </Link>
+          {constants.timeUnits.map(unit => (
+            constants.durations.map(d => (
+              <Link key={d+unit} href={`/timer/${d}-${unit}-timer/`} className="bg-white rounded-lg p-5 shadow no-underline flex flex-col items-center hover:shadow-lg transition-all duration-300">
+                <h3 className="text-xl font-bold text-[#3a86ff] mb-2">{d} {unit} Timer</h3>
+                <p className="text-[#555555] text-center">Need a shorter countdown? Try our {d} {unit} timer for quick tasks.</p>
+              </Link>
+            ))
           ))}
          
         </div>
@@ -434,23 +489,27 @@ export default async function DynamicTimer({ params }) {
 export async function generateMetadata({ params }) {
   const { slug } = await params;
 
-  const duration = parseInt(slug.replace(DEFAULT_END,''), 10);
+  const match = slug.match(/^(\d+)-(second|minute|hour|day)-timer$/);
+  
+  
+  const count = parseInt(match[1], 10);
+  let unit = match[2];
   
   // 如果不是有效数字，提供默认值
-  if (isNaN(duration) || duration <= 0 ) {
+  if (isNaN(count) || count <= 0 ) {
     return {
       title: 'Timer Not Found',
       description: 'The requested timer duration is not available.',
     };
   }
 
-  const metaInfo = getMetaInfo(duration);
+  const metaInfo = getMetaInfo({duration:count,unit});
   
   return {
     title: metaInfo.title,
     description: metaInfo.desc,
     alternates :{
-      canonical: `${constants.domain}/timer/${duration}-minute-timer/`,
+      canonical: `${constants.domain}/timer/${count}-${unit}-timer`,
     }
   };
 }
