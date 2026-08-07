@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/study-timer',
     '/shareable-countdown',
     '/days-until',
+    '/visual-timer',
     '/white-noise/office',
     '/privacy-policy',
     '/terms-of-use',

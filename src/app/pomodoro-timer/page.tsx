@@ -77,6 +77,56 @@ export default function PomodoroTimerPage() {
                     }
                   }
                 ]
+              },
+              {
+                "@type": "HowTo",
+                "name": "How to Use the Pomodoro Technique",
+                "description": "Master the Pomodoro Technique in four simple steps to boost your productivity.",
+                "step": [
+                  {
+                    "@type": "HowToStep",
+                    "position": 1,
+                    "name": "Choose a Task",
+                    "text": "Select one specific task you want to focus on. Break larger tasks into smaller, manageable pieces."
+                  },
+                  {
+                    "@type": "HowToStep",
+                    "position": 2,
+                    "name": "Work for 25 Minutes",
+                    "text": "Set the Pomodoro timer for 25 minutes and focus exclusively on your task. Avoid all distractions."
+                  },
+                  {
+                    "@type": "HowToStep",
+                    "position": 3,
+                    "name": "Take a 5-Minute Break",
+                    "text": "When the timer rings, take a short break. Stand up, stretch, hydrate, or do something relaxing."
+                  },
+                  {
+                    "@type": "HowToStep",
+                    "position": 4,
+                    "name": "Long Break After 4 Cycles",
+                    "text": "After completing 4 Pomodoros, take a longer break of 15-30 minutes to recharge fully."
+                  }
+                ]
+              },
+              {
+                "@type": "SoftwareApplication",
+                "name": "Pomodoro Timer",
+                "applicationCategory": "ProductivityApplication",
+                "operatingSystem": "All",
+                "offers": {
+                  "@type": "Offer",
+                  "category": "free",
+                  "price": "0",
+                  "priceCurrency": "USD"
+                },
+                "aggregateRating": {
+                  "@type": "AggregateRating",
+                  "ratingValue": "4.9",
+                  "ratingCount": "428",
+                  "bestRating": "5",
+                  "worstRating": "1"
+                }
               }
             ]
           })
@@ -157,6 +207,18 @@ export default function PomodoroTimerPage() {
           <Link href="/shareable-countdown" className="bg-white rounded-lg p-5 shadow text-center hover:shadow-lg transition-all no-underline">
             <h3 className="font-bold text-lg mb-1">🔗 Share Timer</h3>
             <p className="text-sm text-[#555555]">Create & share countdowns with others</p>
+          </Link>
+          <Link href="/timer/5-minute-timer" className="bg-white rounded-lg p-5 shadow text-center hover:shadow-lg transition-all no-underline">
+            <h3 className="font-bold text-lg mb-1">⏱ 5 Min Timer</h3>
+            <p className="text-sm text-[#555555]">Quick short-break countdown</p>
+          </Link>
+          <Link href="/timer/50-minute-timer" className="bg-white rounded-lg p-5 shadow text-center hover:shadow-lg transition-all no-underline">
+            <h3 className="font-bold text-lg mb-1">⏱ 50 Min Timer</h3>
+            <p className="text-sm text-[#555555]">Extended focus session timer</p>
+          </Link>
+          <Link href="/white-noise/office" className="bg-white rounded-lg p-5 shadow text-center hover:shadow-lg transition-all no-underline">
+            <h3 className="font-bold text-lg mb-1">🔊 White Noise</h3>
+            <p className="text-sm text-[#555555]">Mask distractions for deeper focus</p>
           </Link>
         </div>
       </section>

@@ -53,6 +53,7 @@ const Footer = () => {
               <li><Link href="/study-timer" className="text-[#777777] hover:text-[#3a86ff] no-underline">📚 Study Timer</Link></li>
               <li><Link href="/shareable-countdown" className="text-[#777777] hover:text-[#3a86ff] no-underline">🔗 Shareable Countdown</Link></li>
               <li><Link href="/white-noise/office" className="text-[#777777] hover:text-[#3a86ff] no-underline">🔊 White Noise Generator</Link></li>
+              <li><Link href="/visual-timer" className="text-[#777777] hover:text-[#3a86ff] no-underline">👀 Visual Timer</Link></li>
               <li><Link href="/days-until" className="text-[#777777] hover:text-[#3a86ff] no-underline">📅 Event Countdowns</Link></li>
             </ul>
           </div>
