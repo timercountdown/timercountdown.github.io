@@ -1,13 +1,19 @@
 import HolidayPageClient from "./page-client";
 import Link from 'next/link';
 import { holidays } from '@/app/lib/holiday';
-import { notFound } from 'next/navigation';
+
+const HOLIDAY_EMOJI: Record<string, string> = {
+  newyear: '🎉', easter: '🐰', memorialday: '👷', thanksgiving: '🦃',
+  christmas: '🎄', halloween: '🎃', valentines: '❤️', spring: '🌱',
+  summer: '☀️', fall: '🍂', winter: '🍁', wintersolstice: '❄️',
+  ramadan: '☪️', holi: '🌿'
+};
 
 const HolidayPage: React.FC = async () => {
   const holidayList = Object.entries(holidays).map(([slug, h]) => {
     const nextDate = h.getNextDate();
     const daysUntil = Math.floor((nextDate.getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24));
-    return { slug, name: h.name, emoji: h.emoji, daysUntil };
+    return { slug, name: h.name, emoji: HOLIDAY_EMOJI[slug] || '📅', daysUntil };
   }).sort((a, b) => a.daysUntil - b.daysUntil);
 
   return (
