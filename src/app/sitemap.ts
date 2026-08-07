@@ -2,6 +2,8 @@ import type { MetadataRoute } from 'next';
 import { constants } from '@/utils/constants';
 import { holidays } from '@/app/lib/holiday';
 
+export const dynamic = 'force-static';
+
 const SITE_URL = 'https://timercountdown.github.io';
 
 export default function sitemap(): MetadataRoute.Sitemap {
