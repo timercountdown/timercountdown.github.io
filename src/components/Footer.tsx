@@ -2,20 +2,20 @@ import { constants } from '@/utils/constants';
 import Link from 'next/link';
 
 const Footer = () => {
-  const popularTimers = [5, 10, 15, 25, 30];
-  const timerUnits = ['minute', 'second'];
+  const popularTimers = [1, 3, 5, 10, 15, 20, 25, 30, 45, 60, 90, 120];
   const holidays = [
     { name: 'Christmas', slug: 'christmas' },
     { name: 'New Year', slug: 'newyear' },
     { name: 'Ramadan', slug: 'ramadan' },
     { name: 'Easter', slug: 'easter' },
+    { name: 'Thanksgiving', slug: 'thanksgiving' },
+    { name: 'Halloween', slug: 'halloween' },
   ];
 
   return (
     <footer className="bg-gray-50 border-t border-gray-200 mt-16 py-10 px-4">
       <div className="max-w-screen-lg mx-auto">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
-          {/* Brand & Description */}
           <div className="md:col-span-1">
             <h3 className="text-lg font-bold text-[#3a86ff] mb-3">TimerCountdown</h3>
             <p className="text-[#777777] text-sm mb-3">
@@ -28,22 +28,16 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Timers */}
           <div className="md:col-span-1">
             <h4 className="font-bold text-text-primary mb-3">Online Timers</h4>
             <ul className="space-y-2 text-sm">
               {popularTimers.map(n => (
-                <li key={n}>
+                <li key={`${n}-min`}>
                   <Link href={`/timer/${n}-minute-timer`} className="text-[#777777] hover:text-[#3a86ff] no-underline">
                     {n} Minute Timer
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link href="/timer/120-minute-timer" className="text-[#777777] hover:text-[#3a86ff] no-underline">
-                  120 Minute Timer
-                </Link>
-              </li>
               <li>
                 <Link href="/timer/90-second-timer" className="text-[#777777] hover:text-[#3a86ff] no-underline">
                   90 Second Timer
@@ -52,7 +46,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Tools */}
           <div className="md:col-span-1">
             <h4 className="font-bold text-text-primary mb-3">Productivity Tools</h4>
             <ul className="space-y-2 text-sm">
@@ -64,7 +57,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Event Countdowns */}
           <div className="md:col-span-1">
             <h4 className="font-bold text-text-primary mb-3">Popular Countdowns</h4>
             <ul className="space-y-2 text-sm">
@@ -79,7 +71,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom bar */}
         <div className="border-t border-gray-200 pt-6 text-center text-[#777777] text-sm">
           <p>&copy; 2025 TimerCountdown. All rights reserved. 
             <Link href="/privacy-policy" className="text-[#3a86ff] no-underline hover:underline ml-2">Privacy Policy</Link> | 

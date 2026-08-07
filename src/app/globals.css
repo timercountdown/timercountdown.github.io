@@ -23,6 +23,7 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -32,6 +33,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  font-display: swap;
+}
+
+/* Prevent CLS from font loading */
+@font-face {
+  font-display: swap;
 }
 
 /* Mobile optimization */
@@ -41,7 +48,6 @@ body {
     overflow-x: hidden;
   }
   
-  /* Ensure touch targets are at least 44x44px */
   button, 
   a, 
   input, 
@@ -50,7 +56,6 @@ body {
     min-height: 44px;
   }
   
-  /* Improve readability on small screens */
   h1 {
     line-height: 1.2;
     font-size: 1.875rem;
@@ -62,18 +67,15 @@ body {
   }
 }
 
-/* Prevent text selection on interactive elements */
 button, .no-select {
   -webkit-user-select: none;
   user-select: none;
 }
 
-/* Smooth transitions for all interactive elements */
 a, button, [role="button"] {
   transition: all 0.2s ease;
 }
 
-/* Focus styles for accessibility */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -83,13 +85,26 @@ textarea:focus-visible {
   outline-offset: 2px;
 }
 
-/* Loading states */
 .loading {
   opacity: 0.6;
   pointer-events: none;
 }
 
-/* Print-friendly styles */
+/* Image loading optimization - prevent CLS */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Ensure smooth animations don't hurt LCP */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 @media print {
   header, footer, nav {
     display: none;

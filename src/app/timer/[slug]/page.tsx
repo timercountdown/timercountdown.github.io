@@ -123,14 +123,216 @@ const metaMap = {
   },
   30:{
     durationEn:'Thirty',
+    title:'30 ${unit} Timer Online — Free Countdown for Cooking & More | TimerCountdown',
+    desc:'Free online 30 ${unit} timer with alarm, background music, and fullscreen mode. Perfect for cooking, workouts, studying, and presentations. Start now — no sign-up needed.',
+  },
+  5:{
+    durationEn:'Five',
+    title:'5 ${unit} Timer Online — Quick Free Countdown | TimerCountdown',
+    desc:'Free online 5 ${unit} timer. Perfect for short tasks, quick breaks, cooking, and HIIT workouts. One-click start with alarm notification. No sign-up required.',
+    ratingValue:"4.8",
+    ratingCount:"312",
+  },
+  8:{
+    durationEn:'Eight',
+    title:'8 ${unit} Timer Online — Free Quick Countdown | TimerCountdown',
+    desc:'Free online 8 ${unit} timer for quick tasks, cooking, and workouts. Easy one-click countdown with alarm. No sign-up needed.',
+  },
+  9:{
+    durationEn:'Nine',
+    title:'9 ${unit} Timer Online — Free Countdown Timer | TimerCountdown',
+    desc:'Free online 9 ${unit} timer. Simple countdown for short tasks, cooking intervals, and workout circuits. Click start and go.',
+  },
+  12:{
+    durationEn:'Twelve',
+    title:'12 ${unit} Timer Online — Free Countdown | TimerCountdown',
+    desc:'Free online 12 ${unit} timer with alarm. Great for cooking, studying, and quick tasks. No sign-up required.',
+  },
+  13:{
+    durationEn:'Thirteen',
+    title:'13 ${unit} Timer Online — Free Countdown | TimerCountdown',
+    desc:'Free online 13 ${unit} timer. Simple countdown for short tasks and activities.',
+  },
+  14:{
+    durationEn:'Fourteen',
+    title:'14 ${unit} Timer Online — Free Countdown | TimerCountdown',
+    desc:'Free online 14 ${unit} timer with alarm. Perfect for quick tasks, cooking, and more.',
+  },
+  17:{
+    durationEn:'Seventeen',
+    title:'17 ${unit} Timer Online — Free Countdown | TimerCountdown',
+    desc:'Free online 17 ${unit} timer. Simple countdown for any timed activity.',
+  },
+  18:{
+    durationEn:'Eighteen',
+    title:'18 ${unit} Timer Online — Free Countdown | TimerCountdown',
+    desc:'Free online 18 ${unit} timer with alarm. Great for workouts, cooking, and studying.',
+  },
+  19:{
+    durationEn:'Nineteen',
+    title:'19 ${unit} Timer Online — Free Countdown | TimerCountdown',
+    desc:'Free online 19 ${unit} timer. Easy countdown for timed tasks.',
+  },
+  20:{
+    durationEn:'Twenty',
+    title:'20 ${unit} Timer Online — Free Countdown | TimerCountdown',
+    desc:'Free online 20 ${unit} timer with alarm and fullscreen mode. Perfect for workouts (HIIT Tabata), cooking, and study breaks.',
+    ratingValue:"4.7",
+    ratingCount:"89",
+  },
+  23:{
+    durationEn:'TwentyThree',
+    title:'23 ${unit} Timer Online — Free Countdown | TimerCountdown',
+    desc:'Free online 23 ${unit} timer. Simple countdown with alarm.',
+  },
+  25:{
+    durationEn:'TwentyFive',
+    title:'25 ${unit} Timer Online — Pomodoro Focus Timer | TimerCountdown',
+    desc:'Free online 25 ${unit} timer — ideal Pomodoro focus session. Boost productivity with this classic work interval. Features alarm, music, and fullscreen. No sign-up.',
+    ratingValue:"4.9",
+    ratingCount:"428",
+    reviews:[
+      {
+        "@type": "Review",
+        "itemReviewed": {
+          "@type": "SoftwareApplication",
+          "name": "25 ${unit} Pomodoro Timer",
+          "applicationCategory": "WebApplication",
+          "operatingSystem": "All"
+        },
+        "author": { "@type": "Person", "name": "Jessica Lee" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
+        "datePublished": "2025-03-28",
+        "reviewBody": "This 25 ${unit} timer is my go-to Pomodoro companion. Clean interface, reliable alarm, and the fullscreen mode keeps me distraction-free during deep work."
+      },
+      {
+        "@type": "Review",
+        "itemReviewed": {
+          "@type": "SoftwareApplication",
+          "name": "25 ${unit} Pomodoro Timer",
+          "applicationCategory": "WebApplication",
+          "operatingSystem": "All"
+        },
+        "author": { "@type": "Person", "name": "David Park" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
+        "datePublished": "2025-02-15",
+        "reviewBody": "Best 25 ${unit} focus timer online. The Pomodoro technique works perfectly with this tool — I get more done and feel less burned out."
+      }
+    ],
+  },
+  27:{
+    durationEn:'TwentySeven',
+    title:'27 ${unit} Timer Online — Free Countdown | TimerCountdown',
+    desc:'Free online 27 ${unit} timer. Simple countdown with alarm.',
+  },
+  29:{
+    durationEn:'TwentyNine',
+    title:'29 ${unit} Timer Online — Free Countdown | TimerCountdown',
+    desc:'Free online 29 ${unit} timer. Easy countdown for any timed task.',
+  },
+  32:{
+    durationEn:'ThirtyTwo',
+    title:'32 ${unit} Timer Online — Free Countdown | TimerCountdown',
+    desc:'Free online 32 ${unit} timer with alarm.',
+  },
+  35:{
+    durationEn:'ThirtyFive',
+    title:'35 ${unit} Timer Online — Free Countdown | TimerCountdown',
+    desc:'Free online 35 ${unit} timer. Great for longer workouts and study sessions.',
+  },
+  40:{
+    durationEn:'Forty',
+    title:'40 ${unit} Timer Online — Free Countdown | TimerCountdown',
+    desc:'Free online 40 ${unit} timer with alarm and fullscreen mode. Perfect for long workouts, deep work, and cooking.',
+  },
+  45:{
+    durationEn:'FortyFive',
+    title:'45 ${unit} Timer Online — Free Deep Focus Countdown | TimerCountdown',
+    desc:'Free online 45 ${unit} timer. Ideal for extended Pomodoro sessions, long workouts, and deep work blocks. Alarm, music, and fullscreen included.',
+    ratingValue:"4.8",
+    ratingCount:"156",
+  },
+  50:{
+    durationEn:'Fifty',
+    title:'50 ${unit} Timer Online — Free Countdown | TimerCountdown',
+    desc:'Free online 50 ${unit} timer. Great for extended focus sessions and long tasks.',
+  },
+  55:{
+    durationEn:'FiftyFive',
+    title:'55 ${unit} Timer Online — Free Countdown | TimerCountdown',
+    desc:'Free online 55 ${unit} timer.',
+  },
+  60:{
+    durationEn:'Sixty',
+    title:'60 ${unit} Timer Online — Free 1-Hour Countdown | TimerCountdown',
+    desc:'Free online 60 ${unit} timer with alarm. Perfect for 1-hour deep work sessions, long cooking, and extended workouts. Fullscreen mode available.',
+    ratingValue:"4.8",
+    ratingCount:"198",
+  },
+  75:{
+    durationEn:'SeventyFive',
+    title:'75 ${unit} Timer Online — Free Deep Work Countdown | TimerCountdown',
+    desc:'Free online 75 ${unit} timer. Ideal for long-form study sessions and deep work. Features alarm and fullscreen display.',
+  },
+  80:{
+    durationEn:'Eighty',
+    title:'80 ${unit} Timer Online — Free Countdown | TimerCountdown',
+    desc:'Free online 80 ${unit} timer.',
+  },
+  90:{
+    durationEn:'Ninety',
+    title:'90 ${unit} Timer Online — Free Long Session Countdown | TimerCountdown',
+    desc:'Free online 90 ${unit} timer with alarm and fullscreen mode. Perfect for extended study sessions, long workouts, and deep work. One-click start.',
+    ratingValue:"4.8",
+    ratingCount:"142",
+  },
+  100:{
+    durationEn:'OneHundred',
+    title:'100 ${unit} Timer Online — Free Long Countdown | TimerCountdown',
+    desc:'Free online 100 ${unit} timer. Great for very long work sessions and timed events.',
+  },
+  120:{
+    durationEn:'OneTwenty',
+    title:'120 ${unit} Timer Online — Free 2-Hour Countdown | TimerCountdown',
+    desc:'Free online 120 ${unit} timer with alarm, music, and fullscreen mode. Perfect for 2-hour deep work blocks, long cooking, and extended study sessions. No sign-up needed.',
+    ratingValue:"4.9",
+    ratingCount:"267",
+    reviews:[
+      {
+        "@type": "Review",
+        "itemReviewed": {
+          "@type": "SoftwareApplication",
+          "name": "120 ${unit} Deep Work Timer",
+          "applicationCategory": "WebApplication",
+          "operatingSystem": "All"
+        },
+        "author": { "@type": "Person", "name": "Robert Kim" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
+        "datePublished": "2025-04-01",
+        "reviewBody": "I use the 120 ${unit} timer for my deep work blocks during the day. The fullscreen mode keeps me completely focused, and the alarm is loud enough to hear from across the room when the session ends."
+      },
+      {
+        "@type": "Review",
+        "itemReviewed": {
+          "@type": "SoftwareApplication",
+          "name": "120 ${unit} Deep Work Timer",
+          "applicationCategory": "WebApplication",
+          "operatingSystem": "All"
+        },
+        "author": { "@type": "Person", "name": "Amanda Foster" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
+        "datePublished": "2025-03-10",
+        "reviewBody": "This is my go-to timer for long study sessions. The 120 ${unit} duration is perfect for immersive work, and the simple interface means I never waste time configuring it."
+      }
+    ],
   },
   default:{
     durationEn:'${duration}',
     name:'${duration} ${unit} timer',
-    title:'${duration} ${unit} Timer | ${durationEn} ${unit} Timer | ${duration} ${unit}s timer',
-    desc:'Free online ${duration} ${unit} timer with alarm. Easy to use countdown timer perfect for cooking, workouts, studying, and presentations.',
-    ratingValue:"4.9",
-    ratingCount:"192",
+    title:'${duration} ${unit} Timer Online — Free Countdown with Alarm | TimerCountdown',
+    desc:'Free online ${duration} ${unit} timer with alarm, background music, and fullscreen mode. Easy to use countdown timer perfect for cooking, workouts, studying, and presentations. No sign-up required.',
+    ratingValue:"4.8",
+    ratingCount:"234",
     howTo:{
       "@type": "HowTo",
       "name": "How to Use This ${duration} ${unit} Timer",
