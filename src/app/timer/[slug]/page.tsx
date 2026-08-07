@@ -479,6 +479,28 @@ export default async function DynamicTimer({ params }) {
          
         </div>
       </div>
+
+      {/* SEO Cross-Link Section */}
+      <div className="my-10 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6">
+        <h2 className="text-2xl font-bold mb-4 text-center">Boost Your Productivity</h2>
+        <div className="grid md:grid-cols-3 gap-4">
+          <Link href="/pomodoro-timer" className="bg-white rounded-lg p-5 shadow no-underline block text-center hover:shadow-lg transition-all">
+            <div className="text-3xl mb-2">🍅</div>
+            <h3 className="font-bold text-lg text-[#2b2d42] mb-1">Pomodoro Timer</h3>
+            <p className="text-sm text-[#555555]">25/5 work-break cycles</p>
+          </Link>
+          <Link href="/study-timer" className="bg-white rounded-lg p-5 shadow no-underline block text-center hover:shadow-lg transition-all">
+            <div className="text-3xl mb-2">📚</div>
+            <h3 className="font-bold text-lg text-[#2b2d42] mb-1">Study Timer</h3>
+            <p className="text-sm text-[#555555]">Focus timer with lo-fi beats</p>
+          </Link>
+          <Link href="/shareable-countdown" className="bg-white rounded-lg p-5 shadow no-underline block text-center hover:shadow-lg transition-all">
+            <div className="text-3xl mb-2">🔗</div>
+            <h3 className="font-bold text-lg text-[#2b2d42] mb-1">Shareable Countdown</h3>
+            <p className="text-sm text-[#555555]">Create & share with friends</p>
+          </Link>
+        </div>
+      </div>
         
       </div>
     </div>
